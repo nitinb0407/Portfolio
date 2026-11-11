@@ -1,0 +1,1761 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NITIN B | CS (AI & ML) Developer Portfolio</title>
+  
+  <!-- Inline SVG Favicon to eliminate 404 requests -->
+  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚡</text></svg>">
+
+  <!-- Tailwind CSS & Google Fonts -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&family=Syne:wght@700;800;900&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: '#ccff00',      /* Signature neon lime */
+            dark: '#080808',
+            surface: '#111111',
+            surfaceHover: '#181818',
+            borderDark: '#222222'
+          },
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            display: ['"Syne"', 'sans-serif'],
+            mono: ['"Fira Code"', 'monospace']
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* Metallic text gradient */
+    .text-metallic {
+      background: linear-gradient(180deg, #ffffff 15%, #b5b5b5 55%, #383838 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    
+    /* Infinite Marquee Animation */
+    @keyframes marquee {
+      0% { transform: translateX(0%); }
+      100% { transform: translateX(-50%); }
+    }
+    .animate-marquee {
+      display: flex;
+      width: max-content;
+      animation: marquee 28s linear infinite;
+    }
+    .animate-marquee:hover {
+      animation-play-state: paused;
+    }
+
+    /* Ambient green glow horizon */
+    .glow-horizon {
+      position: absolute;
+      bottom: -60px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 120%;
+      height: 250px;
+      border-radius: 50%;
+      background: radial-gradient(ellipse at center, rgba(204, 255, 0, 0.45) 0%, rgba(34, 197, 94, 0.15) 45%, transparent 75%);
+      filter: blur(35px);
+      pointer-events: none;
+    }
+
+    /* Avatar styling */
+    .avatar-circle {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: radial-gradient(circle at center, rgba(30,30,30,0.85) 0%, rgba(13,13,13,0.92) 100%);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(204, 255, 0, 0.25);
+    }
+
+    /* Custom scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #080808;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #222222;
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #ccff00;
+    }
+  </style>
+</head>
+<body class="bg-dark text-white font-sans antialiased selection:bg-brand selection:text-black">
+
+  <!-- ================= TOAST NOTIFICATION CONTAINER ================= -->
+  <div id="toast" class="fixed bottom-6 right-6 z-50 transform translate-y-24 opacity-0 transition-all duration-300 pointer-events-none flex items-center gap-3 bg-surface border border-brand/40 px-5 py-3.5 rounded-xl shadow-2xl text-sm">
+    <span class="w-2.5 h-2.5 rounded-full bg-brand animate-ping"></span>
+    <span id="toast-message" class="text-white font-medium">Notification message</span>
+  </div>
+
+  <!-- ================= NAVBAR ================= -->
+  <nav class="fixed top-0 left-0 w-full z-40 bg-dark/85 backdrop-blur-md border-b border-white/5 transition-all">
+    <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+      <a href="#hero" class="font-display font-extrabold text-2xl tracking-widest text-white hover:text-brand transition-colors flex items-center gap-2">
+        <span class="w-2 h-2 rounded-full bg-brand"></span>
+        NITIN B
+      </a>
+
+      <!-- Desktop Nav Links -->
+      <div class="hidden md:flex items-center space-x-10 text-xs font-semibold uppercase tracking-wider text-neutral-400">
+        <a href="#hero" class="nav-link hover:text-brand transition-colors">Home</a>
+        <a href="#about" class="nav-link hover:text-brand transition-colors">About</a>
+        <a href="#skills" class="nav-link hover:text-brand transition-colors">Skills</a>
+        <a href="#projects" class="nav-link hover:text-brand transition-colors">Projects</a>
+        <a href="#contact" class="nav-link hover:text-brand transition-colors">Contact</a>
+      </div>
+
+      <!-- Action buttons -->
+      <div class="hidden sm:flex items-center gap-4">
+        <button onclick="openResumeModal()" class="px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider border border-neutral-700 text-neutral-300 hover:border-brand hover:text-brand transition-all flex items-center gap-1.5">
+          <i data-lucide="file-text" class="w-3.5 h-3.5"></i> Resume
+        </button>
+        <a href="#contact" class="inline-flex items-center px-5 py-2.5 rounded-full text-xs font-bold uppercase tracking-wider bg-white text-black hover:bg-brand transition-all">
+          Hire Me
+        </a>
+      </div>
+
+      <!-- Mobile Hamburger Button -->
+      <button id="mobile-menu-btn" onclick="toggleMobileMenu()" aria-label="Toggle mobile navigation menu" class="md:hidden p-2 rounded-lg text-neutral-400 hover:text-white hover:bg-surface border border-borderDark focus:outline-none">
+        <i data-lucide="menu" id="menu-icon" class="w-6 h-6"></i>
+      </button>
+    </div>
+
+    <!-- Mobile Navigation Drawer -->
+    <div id="mobile-menu" class="hidden md:hidden border-b border-borderDark bg-surface/95 backdrop-blur-xl px-6 py-6 space-y-4">
+      <a href="#hero" onclick="closeMobileMenu()" class="mobile-nav-link block text-sm font-semibold uppercase tracking-wider text-neutral-300 hover:text-brand">Home</a>
+      <a href="#about" onclick="closeMobileMenu()" class="mobile-nav-link block text-sm font-semibold uppercase tracking-wider text-neutral-300 hover:text-brand">About</a>
+      <a href="#skills" onclick="closeMobileMenu()" class="mobile-nav-link block text-sm font-semibold uppercase tracking-wider text-neutral-300 hover:text-brand">Skills</a>
+      <a href="#projects" onclick="closeMobileMenu()" class="mobile-nav-link block text-sm font-semibold uppercase tracking-wider text-neutral-300 hover:text-brand">Projects</a>
+      <a href="#contact" onclick="closeMobileMenu()" class="mobile-nav-link block text-sm font-semibold uppercase tracking-wider text-neutral-300 hover:text-brand">Contact</a>
+      <div class="pt-4 border-t border-borderDark flex flex-col gap-3">
+        <button onclick="openResumeModal(); closeMobileMenu();" class="w-full text-center py-2.5 rounded-full border border-neutral-700 text-xs font-bold uppercase tracking-wider text-neutral-200 hover:border-brand hover:text-brand">
+          View Resume
+        </button>
+        <a href="#contact" onclick="closeMobileMenu()" class="w-full text-center py-2.5 rounded-full bg-brand text-black text-xs font-bold uppercase tracking-wider">
+          Hire Me
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ================= HERO SECTION (FIRST SLIDE) ================= -->
+  <section id="hero" class="relative min-h-screen pt-24 pb-12 flex flex-col justify-end items-center overflow-hidden border-b border-borderDark">
+    
+    <!-- Foreground Content (First Slide): Nitin's Portrait + Neck-Aligned PORTFOLIO Watermark -->
+    <div class="relative z-10 max-w-7xl mx-auto px-4 text-center flex flex-col items-center w-full">
+      
+      <!-- Portrait & Background Text Container (Locked together) -->
+      <div class="relative w-full flex flex-col items-center justify-end select-none">
+        
+        <!-- Watermark Behind Neck: Aligned to 34% of portrait height (neck level, not shoulders) -->
+        <div class="absolute top-[33%] sm:top-[34%] left-1/2 -translate-x-1/2 -translate-y-1/2 w-screen flex items-center justify-center pointer-events-none select-none z-0 px-2 sm:px-4">
+          <h1 class="font-display font-black text-[clamp(2.5rem,10.2vw,11.5rem)] leading-none tracking-tight text-metallic opacity-90 text-center whitespace-nowrap select-none drop-shadow-[0_10px_35px_rgba(0,0,0,0.95)] max-w-full">
+            PORTFOLIO
+          </h1>
+        </div>
+
+        <!-- Nitin's Real Portrait Cutout (In front of watermark, neck level aligned) -->
+        <div class="relative z-10 flex items-end justify-center">
+          <img 
+            src="nitin_portrait_transparent.png" 
+            alt="Nitin B - Software Developer" 
+            class="h-[360px] sm:h-[430px] md:h-[490px] lg:h-[530px] w-auto object-contain object-bottom drop-shadow-[0_20px_50px_rgba(0,0,0,0.95)]"
+          />
+          <!-- Ambient bottom gradient fade to seamlessly merge into the surface -->
+          <div class="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-dark via-dark/80 to-transparent pointer-events-none"></div>
+        </div>
+      </div>
+
+      <!-- Status Badge & Subtitles -->
+      <div class="relative z-20 -mt-6 sm:-mt-8 flex flex-col items-center">
+        <span class="inline-flex items-center gap-2 px-3.5 py-1.5 text-[11px] font-mono uppercase tracking-widest bg-dark/90 backdrop-blur-md text-brand border border-brand/40 rounded-full shadow-2xl mb-4">
+          <span class="w-2 h-2 rounded-full bg-brand animate-ping"></span>
+          Available for Opportunities
+        </span>
+
+        <!-- Hero Subtitles -->
+        <div class="flex flex-col sm:flex-row items-center gap-4 sm:gap-6">
+          <span class="text-xs sm:text-sm uppercase tracking-widest text-neutral-300 font-mono">
+            Second-Year B.Tech · CSE (AI &amp; ML) · Jain University · CGPA 7.5
+          </span>
+          <span class="hidden sm:inline-block w-1.5 h-1.5 rounded-full bg-brand"></span>
+          <div class="flex items-center gap-3">
+            <a href="#projects" class="px-5 py-2.5 rounded-full bg-surface border border-neutral-700 hover:border-brand text-xs uppercase tracking-wider font-semibold text-neutral-200 hover:text-brand transition-colors shadow-md">
+              View Projects &darr;
+            </a>
+            <a href="#contact" class="px-5 py-2.5 rounded-full bg-brand text-black text-xs uppercase tracking-wider font-bold hover:bg-white transition-colors shadow-lg shadow-brand/20">
+              Contact Me &rarr;
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= ABOUT SECTION ================= -->
+  <section id="about" class="py-24 border-b border-borderDark">
+    <div class="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center">
+      <!-- Profile Information Card -->
+      <div class="relative rounded-2xl overflow-hidden border border-borderDark max-w-md mx-auto aspect-[4/5] w-full flex flex-col justify-between p-8 bg-surface">
+        <div class="flex justify-between items-start">
+          <span class="font-display font-black text-5xl text-brand/30">01</span>
+          <span class="px-3 py-1 rounded-full text-[11px] font-mono uppercase tracking-wider bg-dark border border-borderDark text-neutral-400">
+            Bengaluru, India
+          </span>
+        </div>
+
+        <div class="my-auto py-6">
+          <span class="font-display font-black text-6xl text-white block">NITIN B</span>
+          <p class="text-brand font-mono text-xs uppercase tracking-widest mt-1">Software &amp; AI/ML Developer</p>
+          
+          <div class="mt-6 space-y-3 font-mono text-xs text-neutral-300">
+            <div class="flex justify-between border-b border-borderDark pb-2">
+              <span class="text-neutral-500">Degree:</span>
+              <span class="text-white font-semibold">B.Tech — CSE (AI &amp; ML)</span>
+            </div>
+            <div class="flex justify-between border-b border-borderDark pb-2">
+              <span class="text-neutral-500">Institution:</span>
+              <span class="text-white">Jain University</span>
+            </div>
+            <div class="flex justify-between border-b border-borderDark pb-2">
+              <span class="text-neutral-500">Academic Year:</span>
+              <span class="text-brand font-semibold">Second Year (2025 – 2029)</span>
+            </div>
+            <div class="flex justify-between border-b border-borderDark pb-2">
+              <span class="text-neutral-500">Current CGPA:</span>
+              <span class="text-brand font-bold font-mono text-sm">7.5 / 10.0</span>
+            </div>
+            <div class="flex justify-between border-b border-borderDark pb-2">
+              <span class="text-neutral-500">Languages:</span>
+              <span class="text-white">English, Hindi, Tamil, Gujarati</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="pt-4 border-t border-borderDark flex justify-between items-center text-xs">
+          <span class="text-neutral-500 font-mono">Status</span>
+          <span class="text-brand font-mono flex items-center gap-1.5">
+            <span class="w-2 h-2 rounded-full bg-brand animate-pulse"></span>
+            Building Solutions &amp; AI Tools
+          </span>
+        </div>
+      </div>
+
+      <!-- Bio Content -->
+      <div>
+        <span class="text-xs uppercase tracking-widest text-brand font-mono font-semibold">About Nitin</span>
+        <h2 class="font-display font-black text-5xl md:text-6xl text-metallic mb-6 mt-1">Intro</h2>
+        
+        <p class="text-neutral-300 text-lg leading-relaxed mb-6 font-normal">
+          Second-year <strong class="text-white font-semibold">Computer Science (AI &amp; ML)</strong> student at Jain University with a <strong class="text-brand">7.5 CGPA</strong> and a solid foundation in <strong class="text-brand">Java, Python, C</strong>, object-oriented design, data structures &amp; algorithms, and predictive analytics.
+        </p>
+        
+        <p class="text-neutral-400 text-sm leading-relaxed mb-6">
+          I am comfortable building small end-to-end applications and genuinely enjoy breaking down real-world problems into clean, structured code. Actively strengthening skills in software development and machine learning fundamentals, driven by a strong logical mindset and a fast learning curve.
+        </p>
+
+        <!-- Quick Stats Pill Grid -->
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 mt-8">
+          <div class="p-3 rounded-xl bg-surface border border-brand/40 text-center">
+            <div class="text-brand font-bold font-display text-xl">7.5</div>
+            <div class="text-neutral-400 text-[11px] font-mono">Current CGPA</div>
+          </div>
+          <div class="p-3 rounded-xl bg-surface border border-borderDark text-center">
+            <div class="text-white font-bold font-display text-lg">2nd Year</div>
+            <div class="text-neutral-500 text-[11px] font-mono">B.Tech AI &amp; ML</div>
+          </div>
+          <div class="p-3 rounded-xl bg-surface border border-borderDark text-center">
+            <div class="text-brand font-bold font-display text-lg">Java &amp; Py</div>
+            <div class="text-neutral-500 text-[11px] font-mono">Core Stacks</div>
+          </div>
+          <div class="p-3 rounded-xl bg-surface border border-borderDark text-center">
+            <div class="text-white font-bold font-display text-lg">2025–29</div>
+            <div class="text-neutral-500 text-[11px] font-mono">Academic Batch</div>
+          </div>
+        </div>
+
+        <div class="mt-8 flex items-center gap-4">
+          <button onclick="openResumeModal()" class="px-5 py-2.5 rounded-full bg-white text-black font-bold text-xs uppercase tracking-wider hover:bg-brand transition-colors flex items-center gap-2">
+            <i data-lucide="eye" class="w-4 h-4"></i> View Resume Summary
+          </button>
+          <button onclick="copyEmail()" class="px-5 py-2.5 rounded-full border border-neutral-700 text-xs font-semibold uppercase tracking-wider text-neutral-300 hover:border-brand hover:text-brand transition-colors flex items-center gap-2">
+            <i data-lucide="copy" class="w-4 h-4"></i> Copy Email
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tech Marquee Banner -->
+    <div class="mt-20 overflow-hidden py-4 border-y border-borderDark bg-surface/50">
+      <div class="animate-marquee flex items-center space-x-12 whitespace-nowrap text-xs font-mono tracking-widest uppercase text-neutral-400">
+        <span>Java</span><span>•</span>
+        <span>Python</span><span>•</span>
+        <span>C Language</span><span>•</span>
+        <span>Data Structures</span><span>•</span>
+        <span>OOP &amp; Encapsulation</span><span>•</span>
+        <span>Algorithms &amp; Sorting</span><span>•</span>
+        <span>Student Depression Calculator</span><span>•</span>
+        <span>MySQL Basics</span><span>•</span>
+        <span>Git &amp; GitHub</span><span>•</span>
+        <span>Exception Handling</span><span>•</span>
+        <span>Machine Learning</span><span>•</span>
+        <span>Problem Solving</span><span>•</span>
+        <span>Analytical Thinking</span><span>•</span>
+        <span>Jain University</span><span>•</span>
+        <!-- Repeat clone for seamless infinite loop -->
+        <span>Java</span><span>•</span>
+        <span>Python</span><span>•</span>
+        <span>C Language</span><span>•</span>
+        <span>Data Structures</span><span>•</span>
+        <span>OOP &amp; Encapsulation</span><span>•</span>
+        <span>Algorithms &amp; Sorting</span><span>•</span>
+        <span>Student Depression Calculator</span><span>•</span>
+        <span>MySQL Basics</span><span>•</span>
+        <span>Git &amp; GitHub</span><span>•</span>
+        <span>Exception Handling</span><span>•</span>
+        <span>Machine Learning</span><span>•</span>
+        <span>Problem Solving</span><span>•</span>
+        <span>Analytical Thinking</span><span>•</span>
+        <span>Jain University</span><span>•</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= SKILLS SECTION (WHAT I CAN DO) ================= -->
+  <section id="skills" class="py-24 border-b border-borderDark">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="flex flex-col sm:flex-row justify-between items-start sm:items-end mb-16 gap-4">
+        <div>
+          <span class="text-xs uppercase tracking-widest text-brand font-mono font-semibold">Specializations</span>
+          <h2 class="font-display font-black text-4xl sm:text-6xl text-metallic uppercase tracking-tight mt-2">
+            WHAT I<br/>CAN DO
+          </h2>
+        </div>
+        <p class="text-neutral-400 text-sm max-w-sm">
+          Click any skill domain to view detailed technical proficiencies and implementation highlights.
+        </p>
+      </div>
+
+      <!-- Accordion Container -->
+      <div class="divide-y divide-borderDark border-y border-borderDark" id="skills-accordion">
+        
+        <!-- Accordion Item 1 -->
+        <div class="accordion-item transition-all duration-300">
+          <button onclick="toggleAccordion(this)" class="w-full py-6 flex items-center justify-between text-left group px-4 hover:bg-brand hover:text-black transition-all duration-200 focus:outline-none">
+            <div class="flex items-center space-x-6">
+              <span class="text-xs font-mono font-bold text-neutral-500 group-hover:text-black">01</span>
+              <span class="text-base sm:text-xl font-bold uppercase tracking-wider">Java Programming &amp; OOP Architecture</span>
+            </div>
+            <i data-lucide="chevron-down" class="accordion-icon w-5 h-5 transition-transform duration-300"></i>
+          </button>
+          <div class="accordion-content hidden px-6 pb-6 text-neutral-400 text-sm leading-relaxed space-y-2">
+            <p>
+              Strong practical foundation in Java and Object-Oriented Programming (OOP) concepts including classes, functions, encapsulation, and modular design.
+            </p>
+            <div class="flex flex-wrap gap-2 pt-2">
+              <span class="px-2.5 py-1 rounded bg-dark border border-borderDark text-xs font-mono text-neutral-300">Classes &amp; Objects</span>
+              <span class="px-2.5 py-1 rounded bg-dark border border-borderDark text-xs font-mono text-neutral-300">Encapsulation</span>
+              <span class="px-2.5 py-1 rounded bg-dark border border-borderDark text-xs font-mono text-neutral-300">Modular Design</span>
+              <span class="px-2.5 py-1 rounded bg-dark border border-borderDark text-xs font-mono text-neutral-300">Console Applications</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Accordion Item 2 -->
+        <div class="accordion-item transition-all duration-300">
+          <button onclick="toggleAccordion(this)" class="w-full py-6 flex items-center justify-between text-left group px-4 hover:bg-brand hover:text-black transition-all duration-200 focus:outline-none">
+            <div class="flex items-center space-x-6">
+              <span class="text-xs font-mono font-bold text-neutral-500 group-hover:text-black">02</span>
+              <span class="text-base sm:text-xl font-bold uppercase tracking-wider">Data Structures &amp; Sorting Algorithms</span>
+            </div>
+            <i data-lucide="chevron-down" class="accordion-icon w-5 h-5 transition-transform duration-300"></i>
+          </button>
+          <div class="accordion-content hidden px-6 pb-6 text-neutral-400 text-sm leading-relaxed space-y-2">
+            <p>
+              Practiced and benchmarked sorting algorithms (Bubble Sort, Selection Sort, Insertion Sort) to analyze runtime and time-complexity trade-offs across arrays, loops, and control structures.
+            </p>
+            <div class="flex flex-wrap gap-2 pt-2">
+              <span class="px-2.5 py-1 rounded bg-dark border border-borderDark text-xs font-mono text-neutral-300">Bubble Sort</span>
+              <span class="px-2.5 py-1 rounded bg-dark border border-borderDark text-xs font-mono text-neutral-300">Selection Sort</span>
+              <span class="px-2.5 py-1 rounded bg-dark border border-borderDark text-xs font-mono text-neutral-300">Insertion Sort</span>
+              <span class="px-2.5 py-1 rounded bg-dark border border-borderDark text-xs font-mono text-neutral-300">Complexity Analysis O(n²)</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Accordion Item 3 -->
+        <div class="accordion-item transition-all duration-300">
+          <button onclick="toggleAccordion(this)" class="w-full py-6 flex items-center justify-between text-left group px-4 hover:bg-brand hover:text-black transition-all duration-200 focus:outline-none">
+            <div class="flex items-center space-x-6">
+              <span class="text-xs font-mono font-bold text-neutral-500 group-hover:text-black">03</span>
+              <span class="text-base sm:text-xl font-bold uppercase tracking-wider">Python &amp; Problem Solving</span>
+            </div>
+            <i data-lucide="chevron-down" class="accordion-icon w-5 h-5 transition-transform duration-300"></i>
+          </button>
+          <div class="accordion-content hidden px-6 pb-6 text-neutral-400 text-sm leading-relaxed space-y-2">
+            <p>
+              Converting real-world problem statements into clean, structured Python scripts. Proficient in control flow, list comprehensions, string operations, and logical reasoning algorithms.
+            </p>
+            <div class="flex flex-wrap gap-2 pt-2">
+              <span class="px-2.5 py-1 rounded bg-dark border border-borderDark text-xs font-mono text-neutral-300">Python 3</span>
+              <span class="px-2.5 py-1 rounded bg-dark border border-borderDark text-xs font-mono text-neutral-300">Control Structures</span>
+              <span class="px-2.5 py-1 rounded bg-dark border border-borderDark text-xs font-mono text-neutral-300">Algorithm Design</span>
+              <span class="px-2.5 py-1 rounded bg-dark border border-borderDark text-xs font-mono text-neutral-300">Analytical Thinking</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Accordion Item 4 -->
+        <div class="accordion-item transition-all duration-300">
+          <button onclick="toggleAccordion(this)" class="w-full py-6 flex items-center justify-between text-left group px-4 hover:bg-brand hover:text-black transition-all duration-200 focus:outline-none">
+            <div class="flex items-center space-x-6">
+              <span class="text-xs font-mono font-bold text-neutral-500 group-hover:text-black">04</span>
+              <span class="text-base sm:text-xl font-bold uppercase tracking-wider">Input Validation &amp; Error Handling</span>
+            </div>
+            <i data-lucide="chevron-down" class="accordion-icon w-5 h-5 transition-transform duration-300"></i>
+          </button>
+          <div class="accordion-content hidden px-6 pb-6 text-neutral-400 text-sm leading-relaxed space-y-2">
+            <p>
+              Practiced rigorous user input sanitization, type-checking, edge-case prevention, and exception handling (try-catch mechanisms) to make programs robust and crash-resistant against unexpected inputs.
+            </p>
+            <div class="flex flex-wrap gap-2 pt-2">
+              <span class="px-2.5 py-1 rounded bg-dark border border-borderDark text-xs font-mono text-neutral-300">Exception Handling</span>
+              <span class="px-2.5 py-1 rounded bg-dark border border-borderDark text-xs font-mono text-neutral-300">Edge Case Testing</span>
+              <span class="px-2.5 py-1 rounded bg-dark border border-borderDark text-xs font-mono text-neutral-300">Defensive Coding</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Accordion Item 5 -->
+        <div class="accordion-item transition-all duration-300">
+          <button onclick="toggleAccordion(this)" class="w-full py-6 flex items-center justify-between text-left group px-4 hover:bg-brand hover:text-black transition-all duration-200 focus:outline-none">
+            <div class="flex items-center space-x-6">
+              <span class="text-xs font-mono font-bold text-neutral-500 group-hover:text-black">05</span>
+              <span class="text-base sm:text-xl font-bold uppercase tracking-wider">Database &amp; MySQL Basics</span>
+            </div>
+            <i data-lucide="chevron-down" class="accordion-icon w-5 h-5 transition-transform duration-300"></i>
+          </button>
+          <div class="accordion-content hidden px-6 pb-6 text-neutral-400 text-sm leading-relaxed space-y-2">
+            <p>
+              Familiar with relational database concepts, tables, primary keys, relationships, and basic SQL operations (SELECT, INSERT, UPDATE, DELETE) for data persistence.
+            </p>
+            <div class="flex flex-wrap gap-2 pt-2">
+              <span class="px-2.5 py-1 rounded bg-dark border border-borderDark text-xs font-mono text-neutral-300">MySQL</span>
+              <span class="px-2.5 py-1 rounded bg-dark border border-borderDark text-xs font-mono text-neutral-300">CRUD Operations</span>
+              <span class="px-2.5 py-1 rounded bg-dark border border-borderDark text-xs font-mono text-neutral-300">Schema Design</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Accordion Item 6 -->
+        <div class="accordion-item transition-all duration-300">
+          <button onclick="toggleAccordion(this)" class="w-full py-6 flex items-center justify-between text-left group px-4 hover:bg-brand hover:text-black transition-all duration-200 focus:outline-none">
+            <div class="flex items-center space-x-6">
+              <span class="text-xs font-mono font-bold text-neutral-500 group-hover:text-black">06</span>
+              <span class="text-base sm:text-xl font-bold uppercase tracking-wider">Git, GitHub &amp; Version Control</span>
+            </div>
+            <i data-lucide="chevron-down" class="accordion-icon w-5 h-5 transition-transform duration-300"></i>
+          </button>
+          <div class="accordion-content hidden px-6 pb-6 text-neutral-400 text-sm leading-relaxed space-y-2">
+            <p>
+              Maintains project code repositories on GitHub following clear, consistent commit practices and version control workflows.
+            </p>
+            <div class="flex flex-wrap gap-2 pt-2">
+              <span class="px-2.5 py-1 rounded bg-dark border border-borderDark text-xs font-mono text-neutral-300">Git CLI</span>
+              <span class="px-2.5 py-1 rounded bg-dark border border-borderDark text-xs font-mono text-neutral-300">GitHub Repositories</span>
+              <span class="px-2.5 py-1 rounded bg-dark border border-borderDark text-xs font-mono text-neutral-300">Commit Conventions</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= PROJECTS SECTION ================= -->
+  <section id="projects" class="py-24 border-b border-borderDark">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-4">
+        <div>
+          <span class="text-xs uppercase tracking-widest text-brand font-mono font-semibold">Featured Work</span>
+          <h2 class="font-display font-black text-4xl sm:text-6xl text-metallic uppercase tracking-tight mt-1">
+            SELECTED <span class="font-normal italic">projects</span>
+          </h2>
+        </div>
+        <p class="text-neutral-400 text-sm max-w-sm">
+          Hands-on technical implementations in Python and Java. Every project below includes an interactive live demo.
+        </p>
+      </div>
+
+      <!-- Project Grid -->
+      <div class="grid md:grid-cols-2 gap-10">
+
+        <!-- Project 1: Student Depression Calculator -->
+        <div class="bg-surface border border-borderDark rounded-2xl p-6 flex flex-col justify-between group hover:border-brand/50 transition-all">
+          <div class="w-full h-56 rounded-xl overflow-hidden bg-dark mb-6 flex flex-col items-center justify-center border border-borderDark relative group-hover:border-brand/30 transition-all p-4">
+            <div class="w-full font-mono text-[11px] text-neutral-400 bg-surface/80 p-3.5 rounded-lg border border-borderDark">
+              <span class="text-brand">$</span> python depression_calculator.py<br/>
+              <span class="text-neutral-400">[Factors: Sleep, Study Load, Activity, Social]</span><br/>
+              <span class="text-emerald-400">> Evaluation: Mental Health &amp; Depression Risk Index</span>
+            </div>
+            <span class="absolute top-3 right-3 text-[10px] font-mono px-2 py-0.5 rounded bg-brand/10 text-brand border border-brand/20">
+              PYTHON · DATA ANALYTICS
+            </span>
+          </div>
+
+          <div>
+            <span class="font-mono text-xs text-neutral-500 font-bold">01</span>
+            <h3 class="text-2xl font-black font-display uppercase tracking-tight mt-1 mb-3">Student Depression Calculator</h3>
+            <p class="text-neutral-400 text-sm leading-relaxed mb-5">
+              An analytical psychological assessment tool that calculates student depression and burnout risk based on sleep duration, academic workload, exercise, social isolation, and daily stress factors.
+            </p>
+
+            <div class="flex flex-wrap gap-2 mb-6">
+              <span class="px-2.5 py-1 rounded-full bg-dark border border-borderDark text-xs font-mono text-neutral-300">Python</span>
+              <span class="px-2.5 py-1 rounded-full bg-dark border border-borderDark text-xs font-mono text-neutral-300">Mental Health Tech</span>
+              <span class="px-2.5 py-1 rounded-full bg-dark border border-borderDark text-xs font-mono text-neutral-300">Risk Assessment</span>
+            </div>
+
+            <div class="flex items-center gap-3">
+              <button onclick="openDepressionModal()" class="px-5 py-2.5 rounded-full bg-brand text-black font-bold text-xs uppercase tracking-wider hover:opacity-90 transition-opacity flex items-center gap-1.5">
+                <i data-lucide="play" class="w-3.5 h-3.5 fill-black"></i> Live Demo
+              </button>
+              <button onclick="openCodeSnippet('depression')" class="px-5 py-2.5 rounded-full border border-neutral-700 text-xs font-semibold uppercase tracking-wider hover:border-brand hover:text-brand transition-colors flex items-center gap-1.5">
+                <i data-lucide="code" class="w-3.5 h-3.5"></i> View Code
+              </button>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Project 2: Student Management System -->
+        <div class="bg-surface border border-borderDark rounded-2xl p-6 flex flex-col justify-between group hover:border-brand/50 transition-all">
+          <div class="w-full h-56 rounded-xl overflow-hidden bg-dark mb-6 flex flex-col items-center justify-center border border-borderDark relative group-hover:border-brand/30 transition-all p-4">
+            <div class="w-full font-mono text-[11px] text-neutral-400 bg-surface/80 p-3.5 rounded-lg border border-borderDark">
+              <span class="text-brand">$</span> java StudentManagementSystem<br/>
+              <span class="text-neutral-400">[1] Add Student [2] View Records [3] Sort</span><br/>
+              <span class="text-emerald-400">> Records loaded: 3 student entities</span>
+            </div>
+            <span class="absolute top-3 right-3 text-[10px] font-mono px-2 py-0.5 rounded bg-brand/10 text-brand border border-brand/20">
+              JAVA OOP
+            </span>
+          </div>
+
+          <div>
+            <span class="font-mono text-xs text-neutral-500 font-bold">02</span>
+            <h3 class="text-2xl font-black font-display uppercase tracking-tight mt-1 mb-3">Student Management System</h3>
+            <p class="text-neutral-400 text-sm leading-relaxed mb-5">
+              Console-based Java application storing and managing student records using classes, functions, and encapsulation. Includes search, record modification, and modular architecture.
+            </p>
+
+            <div class="flex flex-wrap gap-2 mb-6">
+              <span class="px-2.5 py-1 rounded-full bg-dark border border-borderDark text-xs font-mono text-neutral-300">Java</span>
+              <span class="px-2.5 py-1 rounded-full bg-dark border border-borderDark text-xs font-mono text-neutral-300">Encapsulation</span>
+              <span class="px-2.5 py-1 rounded-full bg-dark border border-borderDark text-xs font-mono text-neutral-300">CRUD Methods</span>
+            </div>
+
+            <div class="flex items-center gap-3">
+              <button onclick="openSMSModal()" class="px-5 py-2.5 rounded-full bg-brand text-black font-bold text-xs uppercase tracking-wider hover:opacity-90 transition-opacity flex items-center gap-1.5">
+                <i data-lucide="play" class="w-3.5 h-3.5 fill-black"></i> Live Demo
+              </button>
+              <button onclick="openCodeSnippet('sms')" class="px-5 py-2.5 rounded-full border border-neutral-700 text-xs font-semibold uppercase tracking-wider hover:border-brand hover:text-brand transition-colors flex items-center gap-1.5">
+                <i data-lucide="code" class="w-3.5 h-3.5"></i> View Code
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 3: Sorting Algorithm Visualizer -->
+        <div class="bg-surface border border-borderDark rounded-2xl p-6 flex flex-col justify-between group hover:border-brand/50 transition-all">
+          <div class="w-full h-56 rounded-xl overflow-hidden bg-dark mb-6 flex flex-col items-center justify-center border border-borderDark relative group-hover:border-brand/30 transition-all p-4">
+            <div class="flex items-end justify-center gap-2 h-28 w-full px-6">
+              <div class="w-4 bg-brand/30 rounded-t h-12"></div>
+              <div class="w-4 bg-brand/50 rounded-t h-20"></div>
+              <div class="w-4 bg-brand rounded-t h-16"></div>
+              <div class="w-4 bg-brand/80 rounded-t h-24"></div>
+              <div class="w-4 bg-brand/40 rounded-t h-8"></div>
+              <div class="w-4 bg-brand/90 rounded-t h-28"></div>
+            </div>
+            <span class="text-neutral-500 font-mono text-[11px] mt-2">Bubble · Selection · Insertion Benchmark</span>
+            <span class="absolute top-3 right-3 text-[10px] font-mono px-2 py-0.5 rounded bg-brand/10 text-brand border border-brand/20">
+              ALGORITHMS
+            </span>
+          </div>
+
+          <div>
+            <span class="font-mono text-xs text-neutral-500 font-bold">03</span>
+            <h3 class="text-2xl font-black font-display uppercase tracking-tight mt-1 mb-3">Sorting Algorithm Benchmarking</h3>
+            <p class="text-neutral-400 text-sm leading-relaxed mb-5">
+              Implemented and analyzed Bubble, Selection, and Insertion Sort algorithms in Java. Includes comparison of execution steps, nested loop counts, and worst-case O(n²) trade-offs.
+            </p>
+
+            <div class="flex flex-wrap gap-2 mb-6">
+              <span class="px-2.5 py-1 rounded-full bg-dark border border-borderDark text-xs font-mono text-neutral-300">Algorithms</span>
+              <span class="px-2.5 py-1 rounded-full bg-dark border border-borderDark text-xs font-mono text-neutral-300">Time Complexity</span>
+              <span class="px-2.5 py-1 rounded-full bg-dark border border-borderDark text-xs font-mono text-neutral-300">Benchmarking</span>
+            </div>
+
+            <div class="flex items-center gap-3">
+              <button onclick="openSortingModal()" class="px-5 py-2.5 rounded-full bg-brand text-black font-bold text-xs uppercase tracking-wider hover:opacity-90 transition-opacity flex items-center gap-1.5">
+                <i data-lucide="play" class="w-3.5 h-3.5 fill-black"></i> Live Demo
+              </button>
+              <button onclick="openCodeSnippet('sorting')" class="px-5 py-2.5 rounded-full border border-neutral-700 text-xs font-semibold uppercase tracking-wider hover:border-brand hover:text-brand transition-colors flex items-center gap-1.5">
+                <i data-lucide="code" class="w-3.5 h-3.5"></i> View Code
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 4: Python Problem Solving Suite -->
+        <div class="bg-surface border border-borderDark rounded-2xl p-6 flex flex-col justify-between group hover:border-brand/50 transition-all">
+          <div class="w-full h-56 rounded-xl overflow-hidden bg-dark mb-6 flex flex-col items-center justify-center border border-borderDark relative group-hover:border-brand/30 transition-all p-4">
+            <div class="w-full font-mono text-[11px] text-neutral-400 bg-surface/80 p-3.5 rounded-lg border border-borderDark">
+              <span class="text-brand">def</span> <span class="text-emerald-400">solve_problem</span>(inputs):<br/>
+              &nbsp;&nbsp;return [x <span class="text-brand">for</span> x <span class="text-brand">in</span> inputs <span class="text-brand">if</span> validate(x)]<br/>
+              <span class="text-neutral-500">> Clean modular solutions</span>
+            </div>
+            <span class="absolute top-3 right-3 text-[10px] font-mono px-2 py-0.5 rounded bg-brand/10 text-brand border border-brand/20">
+              PYTHON 3
+            </span>
+          </div>
+
+          <div>
+            <span class="font-mono text-xs text-neutral-500 font-bold">04</span>
+            <h3 class="text-2xl font-black font-display uppercase tracking-tight mt-1 mb-3">Python Logic &amp; Algorithm Suite</h3>
+            <p class="text-neutral-400 text-sm leading-relaxed mb-5">
+              Structured programming solutions converting mathematical and logical problems into modular Python functions with comprehensive input verification and error protection.
+            </p>
+
+            <div class="flex flex-wrap gap-2 mb-6">
+              <span class="px-2.5 py-1 rounded-full bg-dark border border-borderDark text-xs font-mono text-neutral-300">Python</span>
+              <span class="px-2.5 py-1 rounded-full bg-dark border border-borderDark text-xs font-mono text-neutral-300">Control Flow</span>
+              <span class="px-2.5 py-1 rounded-full bg-dark border border-borderDark text-xs font-mono text-neutral-300">Input Validation</span>
+            </div>
+
+            <div class="flex items-center gap-3">
+              <button onclick="openPythonModal()" class="px-5 py-2.5 rounded-full bg-brand text-black font-bold text-xs uppercase tracking-wider hover:opacity-90 transition-opacity flex items-center gap-1.5">
+                <i data-lucide="play" class="w-3.5 h-3.5 fill-black"></i> Live Demo
+              </button>
+              <button onclick="openCodeSnippet('python')" class="px-5 py-2.5 rounded-full border border-neutral-700 text-xs font-semibold uppercase tracking-wider hover:border-brand hover:text-brand transition-colors flex items-center gap-1.5">
+                <i data-lucide="code" class="w-3.5 h-3.5"></i> View Code
+              </button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= CONTACT SECTION ================= -->
+  <section id="contact" class="py-24 border-b border-borderDark relative overflow-hidden">
+    <div class="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center">
+      <div>
+        <span class="text-xs uppercase tracking-widest text-brand font-mono font-semibold">Get Connected</span>
+        <h2 class="font-display font-black text-5xl sm:text-7xl text-metallic mb-6 mt-1">
+          Get in<br/>touch
+        </h2>
+        <p class="text-neutral-400 mb-6 text-sm max-w-md">
+          Interested in collaborating on projects, discussing software opportunities, or connecting? Send me a message or reach out directly.
+        </p>
+
+        <!-- Direct Email Link with Copy Button -->
+        <div class="flex items-center gap-3 flex-wrap">
+          <a href="https://mail.google.com/mail/?view=cm&fs=1&to=nitinb0407@gmail.com&su=Portfolio%20Inquiry%20-%20Nitin%20B" target="_blank" rel="noopener noreferrer" onclick="handleDirectEmail(event)" class="text-xl sm:text-2xl font-semibold text-brand underline underline-offset-4 hover:text-white transition-colors font-mono" title="Click to redirect to Gmail (nitinb0407@gmail.com)">
+            nitinb0407@gmail.com
+          </a>
+          <button onclick="copyEmail()" title="Copy email address" class="p-2 rounded-lg bg-surface border border-borderDark hover:border-brand hover:text-brand text-neutral-400 transition-colors">
+            <i data-lucide="copy" class="w-4 h-4"></i>
+          </button>
+        </div>
+
+        <div class="mt-8 space-y-2.5 text-xs font-mono text-neutral-400">
+          <p class="flex items-center gap-2">
+            <i data-lucide="phone" class="w-4 h-4 text-brand"></i>
+            <a href="tel:+919353512112" class="hover:text-white transition-colors">+91 93535 12112</a>
+          </p>
+          <p class="flex items-center gap-2">
+            <i data-lucide="map-pin" class="w-4 h-4 text-brand"></i>
+            <span>Bengaluru, Karnataka, India</span>
+          </p>
+          <p class="flex items-center gap-2">
+            <i data-lucide="graduation-cap" class="w-4 h-4 text-brand"></i>
+            <span>Jain University · CSE (AI &amp; ML) · CGPA 7.5</span>
+          </p>
+
+          <!-- Social Icon Links with Dedicated SVGs & Working Links -->
+          <div class="flex gap-4 pt-4">
+            <a href="https://www.linkedin.com/in/nitin-b-a023003ab?utm_source=share_via&utm_content=profile&utm_medium=member_android" target="_blank" rel="noopener noreferrer" class="p-3 rounded-xl bg-surface border border-borderDark hover:border-brand hover:text-brand transition-all flex items-center justify-center text-neutral-300 hover:scale-105 shadow-md" title="Nitin B on LinkedIn">
+              <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24">
+                <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.46 10.9v8.37H9.2V10.9H6.46M7.83 6.45a1.64 1.64 0 1 0 0 3.28 1.64 1.64 0 0 0 0-3.28Z"/>
+              </svg>
+            </a>
+            <a href="https://github.com/nitinb0407" target="_blank" rel="noopener noreferrer" class="p-3 rounded-xl bg-surface border border-borderDark hover:border-brand hover:text-brand transition-all flex items-center justify-center text-neutral-300 hover:scale-105 shadow-md" title="Nitin B on GitHub">
+              <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24">
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/>
+              </svg>
+            </a>
+            <a href="https://mail.google.com/mail/?view=cm&fs=1&to=nitinb0407@gmail.com&su=Portfolio%20Inquiry%20-%20Nitin%20B" target="_blank" rel="noopener noreferrer" onclick="handleDirectEmail(event)" class="p-3 rounded-xl bg-surface border border-borderDark hover:border-brand hover:text-brand transition-all flex items-center justify-center text-neutral-300 hover:scale-105 shadow-md" title="Redirect to Gmail (nitinb0407@gmail.com)">
+              <svg class="w-5 h-5 fill-none stroke-current stroke-2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+                <rect width="20" height="16" x="2" y="4" rx="2"/>
+                <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Working Interactive Contact Form -->
+      <form id="contactForm" onsubmit="handleFormSubmit(event)" class="space-y-4 bg-surface border border-borderDark p-8 rounded-2xl relative shadow-xl">
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div>
+            <label for="senderName" class="block text-xs font-mono uppercase text-neutral-400 mb-2">Your Name *</label>
+            <input type="text" id="senderName" required placeholder="John Doe" class="w-full bg-dark border border-borderDark rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-brand text-white transition-colors placeholder-neutral-600" />
+          </div>
+          <div>
+            <label for="senderEmail" class="block text-xs font-mono uppercase text-neutral-400 mb-2">Email Address *</label>
+            <input type="email" id="senderEmail" required placeholder="you@example.com" class="w-full bg-dark border border-borderDark rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-brand text-white transition-colors placeholder-neutral-600" />
+          </div>
+        </div>
+
+        <div>
+          <label for="messageSubject" class="block text-xs font-mono uppercase text-neutral-400 mb-2">Subject</label>
+          <input type="text" id="messageSubject" placeholder="Project Inquiry / Opportunity" class="w-full bg-dark border border-borderDark rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-brand text-white transition-colors placeholder-neutral-600" />
+        </div>
+
+        <div>
+          <label for="senderMessage" class="block text-xs font-mono uppercase text-neutral-400 mb-2">Message *</label>
+          <textarea id="senderMessage" rows="4" required placeholder="Hello Nitin, I would like to discuss..." class="w-full bg-dark border border-borderDark rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-brand text-white transition-colors placeholder-neutral-600"></textarea>
+        </div>
+
+        <button type="submit" id="submitBtn" class="w-full py-3.5 bg-white text-black font-bold uppercase tracking-wider text-xs rounded-xl hover:bg-brand transition-colors flex items-center justify-center gap-2">
+          <span>Send Message</span>
+          <i data-lucide="send" class="w-4 h-4"></i>
+        </button>
+
+        <p id="formFeedback" class="text-xs font-mono text-center hidden"></p>
+
+        <!-- Backend Database & Inbox Status Bar -->
+        <div class="mt-4 pt-3 border-t border-borderDark/70 flex items-center justify-between text-[11px] font-mono text-neutral-400">
+          <div class="flex items-center gap-2">
+            <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+            <span class="text-neutral-400">Backend API &amp; SQLite DB Active</span>
+          </div>
+          <button type="button" onclick="openInboxModal()" class="text-brand hover:text-white transition-colors flex items-center gap-1.5 underline underline-offset-2">
+            <svg class="w-3.5 h-3.5 fill-none stroke-current stroke-2" viewBox="0 0 24 24"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+            <span>View Stored Inquiries</span>
+          </button>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <!-- ================= GLOW HORIZON FOOTER ================= -->
+  <footer class="relative pt-20 pb-16 overflow-hidden bg-black text-center">
+    <div class="max-w-6xl mx-auto px-6 relative z-10">
+      
+      <div class="flex flex-col sm:flex-row justify-between items-center text-xs text-neutral-400 border-b border-neutral-900 pb-10 gap-6">
+        <div class="text-left">
+          <span class="block text-neutral-500 font-mono">Direct Communication:</span>
+          <a href="https://mail.google.com/mail/?view=cm&fs=1&to=nitinb0407@gmail.com&su=Portfolio%20Inquiry%20-%20Nitin%20B" target="_blank" rel="noopener noreferrer" onclick="handleDirectEmail(event)" class="text-white font-mono font-medium hover:text-brand transition-colors" title="Redirect to Gmail">
+            nitinb0407@gmail.com
+          </a>
+        </div>
+        <div>
+          <h4 class="font-bold text-white text-sm">Let’s build something great</h4>
+          <p class="text-neutral-500">Open for academic projects, internships &amp; tech collaborations</p>
+        </div>
+        <a href="#contact" class="px-5 py-2.5 rounded-full border border-neutral-700 hover:border-brand hover:text-brand font-semibold text-xs tracking-wider uppercase transition-colors">
+          Get in touch
+        </a>
+      </div>
+
+      <!-- Social Links Row with Icons -->
+      <div class="flex justify-center items-center flex-wrap gap-8 py-10 text-xs font-mono tracking-wider uppercase text-neutral-400">
+        <a href="https://www.linkedin.com/in/nitin-b-a023003ab?utm_source=share_via&utm_content=profile&utm_medium=member_android" target="_blank" rel="noopener noreferrer" class="hover:text-brand transition-colors flex items-center gap-2">
+          <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
+            <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.46 10.9v8.37H9.2V10.9H6.46M7.83 6.45a1.64 1.64 0 1 0 0 3.28 1.64 1.64 0 0 0 0-3.28Z"/>
+          </svg>
+          LinkedIn
+        </a>
+        <a href="https://github.com/nitinb0407" target="_blank" rel="noopener noreferrer" class="hover:text-brand transition-colors flex items-center gap-2">
+          <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/>
+          </svg>
+          GitHub
+        </a>
+        <a href="https://mail.google.com/mail/?view=cm&fs=1&to=nitinb0407@gmail.com&su=Portfolio%20Inquiry%20-%20Nitin%20B" target="_blank" rel="noopener noreferrer" onclick="handleDirectEmail(event)" class="hover:text-brand transition-colors flex items-center gap-2" title="Redirect to Gmail">
+          <svg class="w-4 h-4 fill-none stroke-current stroke-2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+            <rect width="20" height="16" x="2" y="4" rx="2"/>
+            <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+          </svg>
+          Email
+        </a>
+        <button onclick="scrollToTop()" class="hover:text-brand transition-colors">Back To Top &uarr;</button>
+      </div>
+
+      <!-- Massive Illuminated Horizon Branding -->
+      <div class="relative py-12">
+        <h1 class="font-display font-black text-[18vw] leading-none tracking-tighter text-metallic select-none">
+          NITIN B
+        </h1>
+        <div class="glow-horizon"></div>
+      </div>
+
+      <!-- Bottom Credits -->
+      <div class="flex flex-col sm:flex-row justify-between items-center text-neutral-600 text-xs pt-8 border-t border-white/5 gap-4">
+        <p>&copy; 2026 Nitin B. All rights reserved.</p>
+        <div class="flex items-center gap-4">
+          <span>Second-Year B.Tech CSE (AI &amp; ML) · Jain University · CGPA 7.5</span>
+        </div>
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- ================= FLOATING BACK TO TOP BUTTON ================= -->
+  <button id="backToTopBtn" onclick="scrollToTop()" aria-label="Scroll back to top" class="fixed bottom-6 left-6 z-40 p-3 rounded-full bg-surface border border-neutral-700 text-neutral-300 hover:border-brand hover:text-brand transition-all opacity-0 pointer-events-none shadow-2xl">
+    <i data-lucide="arrow-up" class="w-5 h-5"></i>
+  </button>
+
+  <!-- ================= MODALS SYSTEM ================= -->
+
+  <!-- Generic Modal Backdrop -->
+  <div id="modalBackdrop" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-md hidden items-center justify-center p-4">
+    <div id="modalBox" class="bg-surface border border-borderDark max-w-2xl w-full rounded-2xl overflow-hidden shadow-2xl relative transform transition-all max-h-[90vh] flex flex-col">
+      <!-- Modal Header -->
+      <div class="px-6 py-4 border-b border-borderDark flex items-center justify-between">
+        <div class="flex items-center gap-2.5">
+          <span class="w-3 h-3 rounded-full bg-brand"></span>
+          <h3 id="modalTitle" class="font-display font-bold text-lg text-white">Project Demo</h3>
+        </div>
+        <button onclick="closeModal()" aria-label="Close modal dialog" class="p-1.5 rounded-lg text-neutral-400 hover:text-white hover:bg-dark transition-colors">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+      </div>
+
+      <!-- Modal Body (Dynamic) -->
+      <div id="modalBody" class="p-6 overflow-y-auto space-y-4 text-sm text-neutral-300 font-sans">
+        <!-- Injected via JavaScript -->
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= SCRIPTS ================= -->
+  <script>
+    // 1. Initialize Lucide Icons
+    lucide.createIcons();
+
+    // 2. Accordion Functionality
+    function toggleAccordion(btn) {
+      const item = btn.parentElement;
+      const content = item.querySelector('.accordion-content');
+      const icon = item.querySelector('.accordion-icon');
+      const isOpened = !content.classList.contains('hidden');
+
+      // Close all items
+      document.querySelectorAll('.accordion-content').forEach(c => c.classList.add('hidden'));
+      document.querySelectorAll('.accordion-icon').forEach(i => i.classList.remove('rotate-180'));
+      document.querySelectorAll('.accordion-item button').forEach(b => {
+        b.classList.remove('bg-brand', 'text-black');
+      });
+
+      // Toggle selected item
+      if (!isOpened) {
+        content.classList.remove('hidden');
+        if (icon) icon.classList.add('rotate-180');
+        btn.classList.add('bg-brand', 'text-black');
+      }
+    }
+
+    // 3. Mobile Navigation Menu Toggle
+    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    function toggleMobileMenu() {
+      const isHidden = mobileMenu.classList.contains('hidden');
+      if (isHidden) {
+        mobileMenu.classList.remove('hidden');
+      } else {
+        mobileMenu.classList.add('hidden');
+      }
+    }
+
+    function closeMobileMenu() {
+      if (mobileMenu) {
+        mobileMenu.classList.add('hidden');
+      }
+    }
+
+    if (mobileMenuBtn) {
+      mobileMenuBtn.addEventListener('click', toggleMobileMenu);
+    }
+
+    // 4. Toast Notification
+    function showToast(message) {
+      const toast = document.getElementById('toast');
+      const toastMsg = document.getElementById('toast-message');
+      toastMsg.textContent = message;
+      toast.classList.remove('translate-y-24', 'opacity-0', 'pointer-events-none');
+      
+      setTimeout(() => {
+        toast.classList.add('translate-y-24', 'opacity-0', 'pointer-events-none');
+      }, 3500);
+    }
+
+    // 5.1 Direct Email Handler (Redirects to Gmail Compose)
+    function handleDirectEmail(e) {
+      const email = 'nitinb0407@gmail.com';
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(email).catch(() => {});
+      }
+      showToast('Opening mail client (' + email + ' copied)!');
+    }
+
+    // 5. Copy Email Action
+    function copyEmail() {
+      const email = 'nitinb0407@gmail.com';
+      navigator.clipboard.writeText(email).then(() => {
+        showToast('Copied nitinb0407@gmail.com to clipboard! 📋');
+      }).catch(() => {
+        showToast('Email: nitinb0407@gmail.com');
+      });
+    }
+
+    // 6. Back to Top Button visibility
+    const backToTopBtn = document.getElementById('backToTopBtn');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 400) {
+        backToTopBtn.classList.remove('opacity-0', 'pointer-events-none');
+      } else {
+        backToTopBtn.classList.add('opacity-0', 'pointer-events-none');
+      }
+    });
+
+    function scrollToTop() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // 7. Modal Controls
+    const modalBackdrop = document.getElementById('modalBackdrop');
+    const modalTitle = document.getElementById('modalTitle');
+    const modalBody = document.getElementById('modalBody');
+
+    function openModal(title, htmlContent) {
+      modalTitle.textContent = title;
+      modalBody.innerHTML = htmlContent;
+      modalBackdrop.classList.remove('hidden');
+      modalBackdrop.classList.add('flex');
+      lucide.createIcons();
+    }
+
+    function closeModal() {
+      modalBackdrop.classList.add('hidden');
+      modalBackdrop.classList.remove('flex');
+    }
+
+    modalBackdrop.addEventListener('click', (e) => {
+      if (e.target === modalBackdrop) closeModal();
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeModal();
+    });
+
+    // 8. Interactive Demo: Student Depression Calculator (NEW)
+    function openDepressionModal() {
+      const content = `
+        <div class="space-y-4">
+          <p class="text-neutral-400 text-xs leading-relaxed">
+            Clinical &amp; lifestyle risk evaluation model designed by Nitin. Enter your daily patterns below to compute the <strong>Depression &amp; Academic Burnout Risk Index</strong>.
+          </p>
+
+          <!-- Input Questionnaire -->
+          <div class="space-y-3 bg-dark p-4 rounded-xl border border-borderDark text-xs font-mono">
+            <!-- 1. Sleep -->
+            <div>
+              <label class="block text-neutral-300 mb-1">1. Average Sleep per Night:</label>
+              <select id="calcSleep" class="w-full bg-surface border border-borderDark rounded-lg px-3 py-2 text-white focus:outline-none focus:border-brand">
+                <option value="25">&lt; 5 Hours (Severe Sleep Debt)</option>
+                <option value="15" selected>5 – 6 Hours (Moderate)</option>
+                <option value="0">7 – 8 Hours (Optimal Rest)</option>
+                <option value="10">&gt; 9 Hours (Hypersomnia)</option>
+              </select>
+            </div>
+
+            <!-- 2. Academic Pressure -->
+            <div>
+              <label class="block text-neutral-300 mb-1">2. Academic &amp; Exam Workload Pressure:</label>
+              <select id="calcPressure" class="w-full bg-surface border border-borderDark rounded-lg px-3 py-2 text-white focus:outline-none focus:border-brand">
+                <option value="7">1 - Low / Very Manageable</option>
+                <option value="14">2 - Mild Stress</option>
+                <option value="21" selected>3 - Moderate Workload</option>
+                <option value="28">4 - High Exam Anxiety</option>
+                <option value="35">5 - Extreme / Overwhelmed</option>
+              </select>
+            </div>
+
+            <!-- 3. Physical Activity -->
+            <div>
+              <label class="block text-neutral-300 mb-1">3. Weekly Physical Activity / Exercise:</label>
+              <select id="calcActivity" class="w-full bg-surface border border-borderDark rounded-lg px-3 py-2 text-white focus:outline-none focus:border-brand">
+                <option value="15" selected>Sedentary / Almost None</option>
+                <option value="5">1 – 2 Days / Week</option>
+                <option value="-5">3 – 5 Days / Week (Active Routine)</option>
+              </select>
+            </div>
+
+            <!-- 4. Social Support -->
+            <div>
+              <label class="block text-neutral-300 mb-1">4. Peer Support &amp; Social Interaction:</label>
+              <select id="calcSocial" class="w-full bg-surface border border-borderDark rounded-lg px-3 py-2 text-white focus:outline-none focus:border-brand">
+                <option value="20">Isolated / Rare Communication</option>
+                <option value="5" selected>Moderate Peer Group</option>
+                <option value="-10">Strong Social &amp; Family Support</option>
+              </select>
+            </div>
+
+            <!-- 5. Screen Time -->
+            <div>
+              <label class="block text-neutral-300 mb-1">5. Daily Screen Time (Non-Study / Social Media):</label>
+              <select id="calcScreen" class="w-full bg-surface border border-borderDark rounded-lg px-3 py-2 text-white focus:outline-none focus:border-brand">
+                <option value="0">&lt; 4 Hours / Day</option>
+                <option value="8" selected>4 – 7 Hours / Day</option>
+                <option value="15">8+ Hours / Day (High Digital Fatigue)</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Action Buttons -->
+          <div class="flex gap-2">
+            <button onclick="calculateDepressionRisk()" class="px-5 py-2.5 bg-brand text-black text-xs font-bold uppercase tracking-wider rounded-lg hover:opacity-90 flex items-center gap-1.5">
+              <i data-lucide="calculator" class="w-4 h-4"></i> Calculate Risk Index
+            </button>
+            <button onclick="resetDepressionCalc()" class="px-4 py-2.5 bg-surface border border-neutral-700 text-xs text-neutral-400 font-semibold uppercase tracking-wider rounded-lg hover:text-white">
+              Reset
+            </button>
+          </div>
+
+          <!-- Result Card Container -->
+          <div id="depressionResultBox" class="p-4 bg-dark border border-borderDark rounded-xl hidden space-y-3 font-mono text-xs">
+            <!-- Dynamically populated -->
+          </div>
+        </div>
+      `;
+      openModal('Student Depression & Burnout Risk Calculator', content);
+    }
+
+    function calculateDepressionRisk() {
+      const sleep = parseInt(document.getElementById('calcSleep').value, 10);
+      const pressure = parseInt(document.getElementById('calcPressure').value, 10);
+      const activity = parseInt(document.getElementById('calcActivity').value, 10);
+      const social = parseInt(document.getElementById('calcSocial').value, 10);
+      const screen = parseInt(document.getElementById('calcScreen').value, 10);
+
+      let totalScore = sleep + pressure + activity + social + screen;
+      totalScore = Math.max(5, Math.min(98, totalScore));
+
+      const resultBox = document.getElementById('depressionResultBox');
+      resultBox.classList.remove('hidden');
+
+      let riskTier = '';
+      let badgeColor = '';
+      let advice = '';
+
+      if (totalScore <= 35) {
+        riskTier = 'LOW RISK — Healthy Mental Wellbeing';
+        badgeColor = 'bg-emerald-500/20 text-emerald-400 border-emerald-500/30';
+        advice = 'Great balance! Maintain consistent sleep schedules and active lifestyle habits.';
+      } else if (totalScore <= 65) {
+        riskTier = 'MODERATE RISK — Academic Burnout Tendency';
+        badgeColor = 'bg-amber-500/20 text-amber-400 border-amber-500/30';
+        advice = 'Noticeable stress markers. Recommend scheduling dedicated offline breaks, regular exercise, and sleep regulation.';
+      } else {
+        riskTier = 'ELEVATED / HIGH RISK — Severe Distress & Burnout';
+        badgeColor = 'bg-rose-500/20 text-rose-400 border-rose-500/30';
+        advice = 'High distress detected across sleep, workload, and isolation. Consider connecting with college counseling or peer mentors.';
+      }
+
+      resultBox.innerHTML = `
+        <div class="flex items-center justify-between border-b border-borderDark pb-2">
+          <span class="text-neutral-400 uppercase text-[11px]">Computed Score:</span>
+          <span class="text-2xl font-bold font-display text-white">${totalScore} <span class="text-xs text-neutral-500">/ 100</span></span>
+        </div>
+        <div>
+          <span class="inline-block px-3 py-1 rounded-full text-xs font-bold border ${badgeColor}">
+            ${riskTier}
+          </span>
+        </div>
+        <div class="w-full bg-surface h-2.5 rounded-full overflow-hidden border border-borderDark">
+          <div style="width: ${totalScore}%;" class="h-full bg-brand transition-all duration-500"></div>
+        </div>
+        <div class="text-neutral-300 font-sans text-xs pt-1">
+          <strong class="text-white">Actionable Insights:</strong> ${advice}
+        </div>
+      `;
+
+      showToast(`Calculation complete: Score ${totalScore}/100`);
+    }
+
+    function resetDepressionCalc() {
+      const box = document.getElementById('depressionResultBox');
+      if (box) box.classList.add('hidden');
+      showToast('Calculator fields reset.');
+    }
+
+    // 9. Interactive Demo 1: Student Management System
+    let sampleStudents = [
+      { id: '101', name: 'Aarav Sharma', stream: 'CSE', grade: '9.2' },
+      { id: '102', name: 'Nitin B', stream: 'AI & ML', grade: '9.5' },
+      { id: '103', name: 'Priya Patel', stream: 'CSE', grade: '8.8' }
+    ];
+
+    function openSMSModal() {
+      const content = `
+        <div class="space-y-4">
+          <p class="text-neutral-400 text-xs">
+            Interactive simulation of Nitin's console-based <strong>Student Management System</strong> in Java. Add records and view the stored student entities in real time.
+          </p>
+
+          <!-- Input Controls -->
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 p-3 bg-dark rounded-xl border border-borderDark">
+            <input type="text" id="smsName" placeholder="Student Name" class="bg-surface border border-borderDark rounded-lg px-3 py-2 text-xs text-white focus:outline-none focus:border-brand" />
+            <input type="text" id="smsStream" placeholder="Stream (e.g. AI & ML)" class="bg-surface border border-borderDark rounded-lg px-3 py-2 text-xs text-white focus:outline-none focus:border-brand" />
+            <input type="text" id="smsGrade" placeholder="GPA / Grade" class="bg-surface border border-borderDark rounded-lg px-3 py-2 text-xs text-white focus:outline-none focus:border-brand" />
+          </div>
+
+          <div class="flex gap-2">
+            <button onclick="addStudentRecord()" class="px-4 py-2 bg-brand text-black text-xs font-bold uppercase tracking-wider rounded-lg hover:opacity-90">
+              + Add Student
+            </button>
+            <button onclick="sortStudentRecords()" class="px-4 py-2 bg-surface border border-neutral-700 text-xs text-neutral-300 font-semibold uppercase tracking-wider rounded-lg hover:border-brand hover:text-brand">
+              Sort by Grade &darr;
+            </button>
+            <button onclick="resetStudents()" class="px-4 py-2 bg-surface border border-neutral-700 text-xs text-neutral-400 font-semibold uppercase tracking-wider rounded-lg hover:text-white">
+              Reset
+            </button>
+          </div>
+
+          <!-- Output Display -->
+          <div class="mt-4">
+            <h4 class="text-xs font-mono uppercase text-neutral-400 mb-2">Stored Records (In-Memory Database):</h4>
+            <div id="smsRecordsList" class="space-y-2 font-mono text-xs">
+              ${renderStudentRows()}
+            </div>
+          </div>
+        </div>
+      `;
+      openModal('Student Management System — Interactive Console', content);
+    }
+
+    function renderStudentRows() {
+      return sampleStudents.map((s) => `
+        <div class="p-2.5 rounded-lg bg-dark border border-borderDark flex items-center justify-between">
+          <div>
+            <span class="text-brand font-bold">#${s.id}</span>
+            <span class="text-white ml-2 font-sans font-semibold">${s.name}</span>
+            <span class="text-neutral-500 text-[11px] ml-2">(${s.stream})</span>
+          </div>
+          <span class="px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 text-[11px]">
+            GPA: ${s.grade}
+          </span>
+        </div>
+      `).join('');
+    }
+
+    function addStudentRecord() {
+      const nameInput = document.getElementById('smsName');
+      const streamInput = document.getElementById('smsStream');
+      const gradeInput = document.getElementById('smsGrade');
+
+      const name = nameInput.value.trim();
+      const stream = streamInput.value.trim() || 'CSE (AI & ML)';
+      const grade = gradeInput.value.trim() || '9.0';
+
+      if (!name) {
+        showToast('Please enter a student name!');
+        return;
+      }
+
+      sampleStudents.push({
+        id: String(100 + sampleStudents.length + 1),
+        name: name,
+        stream: stream,
+        grade: grade
+      });
+
+      nameInput.value = '';
+      streamInput.value = '';
+      gradeInput.value = '';
+
+      document.getElementById('smsRecordsList').innerHTML = renderStudentRows();
+      showToast(`Student "${name}" added successfully!`);
+    }
+
+    function sortStudentRecords() {
+      sampleStudents.sort((a, b) => parseFloat(b.grade) - parseFloat(a.grade));
+      document.getElementById('smsRecordsList').innerHTML = renderStudentRows();
+      showToast('Records sorted by GPA (Descending)!');
+    }
+
+    function resetStudents() {
+      sampleStudents = [
+        { id: '101', name: 'Aarav Sharma', stream: 'CSE', grade: '9.2' },
+        { id: '102', name: 'Nitin B', stream: 'AI & ML', grade: '9.5' },
+        { id: '103', name: 'Priya Patel', stream: 'CSE', grade: '8.8' }
+      ];
+      document.getElementById('smsRecordsList').innerHTML = renderStudentRows();
+      showToast('Records reset to default.');
+    }
+
+    // 10. Interactive Demo 2: Sorting Algorithm Visualizer
+    let currentArray = [48, 12, 75, 23, 89, 34, 61];
+
+    function openSortingModal() {
+      const content = `
+        <div class="space-y-4">
+          <p class="text-neutral-400 text-xs">
+            Visualize the sorting algorithms implemented in Java by Nitin: <strong>Bubble Sort, Selection Sort, and Insertion Sort</strong> with complexity metrics.
+          </p>
+
+          <!-- Array Bar Visualization -->
+          <div id="sortingBarsContainer" class="h-36 bg-dark border border-borderDark rounded-xl p-4 flex items-end justify-center gap-3">
+            ${renderBars(currentArray)}
+          </div>
+
+          <!-- Controls -->
+          <div class="flex flex-wrap gap-2 pt-2">
+            <button onclick="runVisualSort('bubble')" class="px-4 py-2 bg-brand text-black text-xs font-bold uppercase tracking-wider rounded-lg hover:opacity-90">
+              Run Bubble Sort
+            </button>
+            <button onclick="runVisualSort('selection')" class="px-4 py-2 bg-surface border border-neutral-700 text-xs font-semibold uppercase tracking-wider rounded-lg hover:border-brand hover:text-brand">
+              Run Selection Sort
+            </button>
+            <button onclick="runVisualSort('insertion')" class="px-4 py-2 bg-surface border border-neutral-700 text-xs font-semibold uppercase tracking-wider rounded-lg hover:border-brand hover:text-brand">
+              Run Insertion Sort
+            </button>
+            <button onclick="shuffleArray()" class="px-4 py-2 bg-surface border border-neutral-700 text-xs text-neutral-400 font-semibold uppercase tracking-wider rounded-lg hover:text-white">
+              Shuffle
+            </button>
+          </div>
+
+          <!-- Analysis Box -->
+          <div id="sortStatusBox" class="p-3 bg-dark border border-borderDark rounded-xl font-mono text-xs text-neutral-300">
+            <span class="text-neutral-500">> Select an algorithm above to run visualization.</span>
+          </div>
+        </div>
+      `;
+      openModal('Sorting Algorithm Visualizer & Benchmarking', content);
+    }
+
+    function renderBars(arr, activeIdx = -1) {
+      return arr.map((val, idx) => `
+        <div class="flex flex-col items-center gap-1">
+          <span class="text-[10px] font-mono text-neutral-500">${val}</span>
+          <div style="height: ${val * 1.2}px;" class="w-6 sm:w-8 rounded-t transition-all duration-300 ${idx === activeIdx ? 'bg-white' : 'bg-brand'}"></div>
+        </div>
+      `).join('');
+    }
+
+    function shuffleArray() {
+      currentArray = [
+        Math.floor(Math.random() * 80) + 15,
+        Math.floor(Math.random() * 80) + 15,
+        Math.floor(Math.random() * 80) + 15,
+        Math.floor(Math.random() * 80) + 15,
+        Math.floor(Math.random() * 80) + 15,
+        Math.floor(Math.random() * 80) + 15,
+        Math.floor(Math.random() * 80) + 15
+      ];
+      document.getElementById('sortingBarsContainer').innerHTML = renderBars(currentArray);
+      document.getElementById('sortStatusBox').innerHTML = '<span class="text-neutral-500">> Array shuffled with new random values.</span>';
+    }
+
+    function runVisualSort(algo) {
+      const container = document.getElementById('sortingBarsContainer');
+      const statusBox = document.getElementById('sortStatusBox');
+      
+      let arr = [...currentArray];
+      let steps = [];
+
+      if (algo === 'bubble') {
+        for (let i = 0; i < arr.length; i++) {
+          for (let j = 0; j < arr.length - i - 1; j++) {
+            if (arr[j] > arr[j + 1]) {
+              let temp = arr[j];
+              arr[j] = arr[j + 1];
+              arr[j + 1] = temp;
+              steps.push({ state: [...arr], index: j + 1 });
+            }
+          }
+        }
+        statusBox.innerHTML = `
+          <div class="text-brand font-bold mb-1">Algorithm: Bubble Sort</div>
+          <div>Time Complexity: Best O(n), Average &amp; Worst O(n²)</div>
+          <div class="text-emerald-400 mt-1">Sorting completed in ${steps.length} swaps!</div>
+        `;
+      } else if (algo === 'selection') {
+        for (let i = 0; i < arr.length; i++) {
+          let minIdx = i;
+          for (let j = i + 1; j < arr.length; j++) {
+            if (arr[j] < arr[minIdx]) minIdx = j;
+          }
+          let temp = arr[i];
+          arr[i] = arr[minIdx];
+          arr[minIdx] = temp;
+          steps.push({ state: [...arr], index: i });
+        }
+        statusBox.innerHTML = `
+          <div class="text-brand font-bold mb-1">Algorithm: Selection Sort</div>
+          <div>Time Complexity: O(n²) in all cases (finds minimum repeatedly)</div>
+          <div class="text-emerald-400 mt-1">Completed in ${steps.length} passes!</div>
+        `;
+      } else {
+        for (let i = 1; i < arr.length; i++) {
+          let key = arr[i];
+          let j = i - 1;
+          while (j >= 0 && arr[j] > key) {
+            arr[j + 1] = arr[j];
+            j = j - 1;
+          }
+          arr[j + 1] = key;
+          steps.push({ state: [...arr], index: j + 1 });
+        }
+        statusBox.innerHTML = `
+          <div class="text-brand font-bold mb-1">Algorithm: Insertion Sort</div>
+          <div>Time Complexity: Best O(n), Worst O(n²) (adaptive sorting)</div>
+          <div class="text-emerald-400 mt-1">Completed in ${steps.length} insertion shifts!</div>
+        `;
+      }
+
+      currentArray = arr;
+      container.innerHTML = renderBars(currentArray);
+      showToast(`Finished running ${algo.toUpperCase()} Sort!`);
+    }
+
+    // 11. Interactive Demo 3: Python Problem Solving Tool
+    function openPythonModal() {
+      const content = `
+        <div class="space-y-4">
+          <p class="text-neutral-400 text-xs">
+            Test algorithmic Python problem solvers written by Nitin: String Palindrome, Array Reversal, or Prime Number Verification.
+          </p>
+
+          <div class="p-3 bg-dark rounded-xl border border-borderDark space-y-3">
+            <div>
+              <label class="block text-xs font-mono text-neutral-400 mb-1">Test String or Number Input:</label>
+              <input type="text" id="pyInput" value="racecar" class="w-full bg-surface border border-borderDark rounded-lg px-3 py-2 text-xs text-white focus:outline-none focus:border-brand font-mono" />
+            </div>
+
+            <div class="flex flex-wrap gap-2">
+              <button onclick="runPythonTest('palindrome')" class="px-3.5 py-1.5 bg-brand text-black text-xs font-bold uppercase tracking-wider rounded-lg hover:opacity-90">
+                Check Palindrome
+              </button>
+              <button onclick="runPythonTest('prime')" class="px-3.5 py-1.5 bg-surface border border-neutral-700 text-xs text-neutral-300 font-semibold uppercase tracking-wider rounded-lg hover:border-brand hover:text-brand">
+                Is Prime?
+              </button>
+              <button onclick="runPythonTest('reverse')" class="px-3.5 py-1.5 bg-surface border border-neutral-700 text-xs text-neutral-300 font-semibold uppercase tracking-wider rounded-lg hover:border-brand hover:text-brand">
+                Reverse String
+              </button>
+            </div>
+          </div>
+
+          <div id="pyOutputBox" class="p-3 bg-dark border border-borderDark rounded-xl font-mono text-xs text-emerald-400">
+            > Output ready. Click a solver above.
+          </div>
+        </div>
+      `;
+      openModal('Python Logic & Problem-Solving Lab', content);
+    }
+
+    function runPythonTest(testType) {
+      const val = document.getElementById('pyInput').value.trim();
+      const outputBox = document.getElementById('pyOutputBox');
+
+      if (!val) {
+        showToast('Please enter an input value!');
+        return;
+      }
+
+      if (testType === 'palindrome') {
+        const cleaned = val.toLowerCase().replace(/[^a-z0-9]/g, '');
+        const reversed = cleaned.split('').reverse().join('');
+        const isPal = cleaned === reversed;
+        outputBox.innerHTML = `
+          <div class="text-neutral-400"># Python Palindrome Verification</div>
+          <div class="mt-1 ${isPal ? 'text-brand font-bold' : 'text-rose-400'}">
+            &gt; Result: "${val}" is ${isPal ? 'a valid PALINDROME! ✅' : 'NOT a palindrome ❌'}
+          </div>
+        `;
+      } else if (testType === 'prime') {
+        const n = parseInt(val, 10);
+        if (isNaN(n) || n <= 1) {
+          outputBox.innerHTML = `<span class="text-rose-400">&gt; "${val}" is not a prime number (must be integer &gt; 1).</span>`;
+          return;
+        }
+        let isPrime = true;
+        for (let i = 2; i <= Math.sqrt(n); i++) {
+          if (n % i === 0) { isPrime = false; break; }
+        }
+        outputBox.innerHTML = `
+          <div class="text-neutral-400"># Python Prime Number Checker</div>
+          <div class="mt-1 ${isPrime ? 'text-brand font-bold' : 'text-neutral-300'}">
+            &gt; Integer ${n} is ${isPrime ? 'a PRIME NUMBER! 🚀' : 'COMPOSITE (Not prime).'}
+          </div>
+        `;
+      } else {
+        const reversed = val.split('').reverse().join('');
+        outputBox.innerHTML = `
+          <div class="text-neutral-400"># Python Reversal Algorithm</div>
+          <div class="text-white mt-1">&gt; Original: "${val}"</div>
+          <div class="text-brand font-bold">&gt; Reversed: "${reversed}"</div>
+        `;
+      }
+    }
+
+    // 12. Code Snippet Viewer Modal
+    function openCodeSnippet(type) {
+      let code = '';
+      let title = '';
+
+      if (type === 'depression') {
+        title = 'Python — Student Depression Calculator';
+        code = `# student_depression_calculator.py
+# Psychological & Burnout Risk Evaluator for Students
+
+class StudentDepressionCalculator:
+    def __init__(self, sleep_hrs, exam_stress, activity_days, social_support, screen_hrs):
+        self.sleep = sleep_hrs              # Hours per night
+        self.stress = exam_stress           # 1 (Low) to 5 (Extreme)
+        self.activity = activity_days       # Days/week
+        self.social = social_support        # 1 (Isolated) to 3 (Strong)
+        self.screen = screen_hrs            # Daily leisure screen time
+
+    def evaluate_risk(self) -> dict:
+        score = 0
+        
+        # Sleep deficiency impact
+        if self.sleep < 5: score += 25
+        elif self.sleep <= 6: score += 15
+        elif self.sleep > 9: score += 10
+        
+        # Academic & exam workload
+        score += (self.stress * 7)  # max 35 points
+        
+        # Physical exercise buffer
+        if self.activity == 0: score += 15
+        elif self.activity >= 3: score = max(0, score - 5)
+        
+        # Peer & social support
+        if self.social == 1: score += 20
+        elif self.social == 3: score = max(0, score - 10)
+        
+        # Screen fatigue
+        if self.screen >= 8: score += 15
+        elif self.screen >= 4: score += 8
+        
+        # Clamp score between 0 and 100
+        score = max(0, min(100, score))
+        
+        # Risk classification
+        if score <= 35:
+            tier = "Low Risk / Healthy Mental Wellbeing"
+        elif score <= 65:
+            tier = "Moderate Risk / Academic Burnout Alert"
+        else:
+            tier = "Elevated Risk / Distress Guidance Required"
+            
+        return {"risk_score": score, "classification": tier}
+
+# Example Evaluation
+student_eval = StudentDepressionCalculator(sleep_hrs=5.5, exam_stress=4, activity_days=1, social_support=2, screen_hrs=6)
+print(student_eval.evaluate_risk())`;
+      } else if (type === 'sms') {
+        title = 'Java — Student Management System Snippet';
+        code = `// Student.java - Encapsulation Example
+public class Student {
+    private String id;
+    private String name;
+    private double grade;
+
+    public Student(String id, String name, double grade) {
+        this.id = id;
+        this.name = name;
+        this.grade = grade;
+    }
+
+    public String getId() { return id; }
+    public String getName() { return name; }
+    public double getGrade() { return grade; }
+
+    public void displayRecord() {
+        System.out.println("ID: " + id + " | Name: " + name + " | GPA: " + grade);
+    }
+}`;
+      } else if (type === 'sorting') {
+        title = 'Java — Bubble & Selection Sort Implementations';
+        code = `// SortingAlgorithms.java
+public class SortingAlgorithms {
+    // Bubble Sort with O(n^2) worst case
+    public static void bubbleSort(int[] arr) {
+        int n = arr.length;
+        for (int i = 0; i < n - 1; i++) {
+            for (int j = 0; j < n - i - 1; j++) {
+                if (arr[j] > arr[j + 1]) {
+                    int temp = arr[j];
+                    arr[j] = arr[j + 1];
+                    arr[j + 1] = temp;
+                }
+            }
+        }
+    }
+}`;
+      } else {
+        title = 'Python — Algorithmic Solutions';
+        code = `# problem_solver.py
+def is_palindrome(text: str) -> bool:
+    cleaned = ''.join(c.lower() for c in text if c.isalnum())
+    return cleaned == cleaned[::-1]
+
+def find_primes(limit: int) -> list[int]:
+    primes = []
+    for num in range(2, limit + 1):
+        if all(num % i != 0 for i in range(2, int(num ** 0.5) + 1)):
+            primes.append(num)
+    return primes`;
+      }
+
+      window.activeSnippetCode = code;
+      const content = `
+        <div class="space-y-3">
+          <pre class="bg-dark p-4 rounded-xl border border-borderDark font-mono text-xs text-neutral-300 overflow-x-auto"><code>${escapeHtml(code)}</code></pre>
+          <div class="flex justify-end">
+            <button onclick="copyActiveCodeSnippet()" class="px-4 py-2 bg-brand text-black font-bold text-xs uppercase tracking-wider rounded-lg hover:opacity-90 flex items-center gap-1.5">
+              <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
+              Copy Code
+            </button>
+          </div>
+        </div>
+      `;
+      openModal(title, content);
+    }
+
+    function copyActiveCodeSnippet() {
+      if (window.activeSnippetCode) {
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(window.activeSnippetCode).then(() => {
+            showToast('Code copied to clipboard!');
+          }).catch(() => {
+            showToast('Code ready to copy!');
+          });
+        } else {
+          showToast('Code ready to copy!');
+        }
+      }
+    }
+
+    function escapeHtml(str) {
+      return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+    }
+
+    // 13. Resume Modal Viewer
+    function openResumeModal() {
+      const content = `
+        <div class="space-y-4">
+          <div class="border-b border-borderDark pb-3">
+            <h4 class="font-display font-black text-2xl text-white">NITIN B</h4>
+            <p class="text-brand font-mono text-xs flex flex-wrap items-center gap-1.5">
+              <span>Bengaluru, Karnataka, India</span>
+              <span>·</span>
+              <a href="tel:+919353512112" class="hover:text-white hover:underline transition-colors">+91 93535 12112</a>
+              <span>·</span>
+              <a href="https://mail.google.com/mail/?view=cm&fs=1&to=nitinb0407@gmail.com&su=Portfolio%20Inquiry%20-%20Nitin%20B" target="_blank" rel="noopener noreferrer" onclick="handleDirectEmail(event)" class="underline hover:text-white transition-colors" title="Redirect to Mail (nitinb0407@gmail.com)">nitinb0407@gmail.com</a>
+            </p>
+          </div>
+
+          <div>
+            <h5 class="text-xs font-mono uppercase text-brand font-bold mb-1">Education</h5>
+            <div class="p-3 bg-dark rounded-xl border border-borderDark">
+              <div class="font-bold text-white">Jain University</div>
+              <div class="text-neutral-400 text-xs">Second-Year B.Tech in Computer Science (AI &amp; ML) · 2025 – 2029</div>
+              <div class="text-brand font-mono text-xs font-bold mt-1">CGPA: 7.5 / 10.0</div>
+            </div>
+          </div>
+
+          <div>
+            <h5 class="text-xs font-mono uppercase text-brand font-bold mb-1">Technical Skills</h5>
+            <div class="flex flex-wrap gap-1.5">
+              <span class="px-2.5 py-1 rounded bg-dark border border-borderDark text-xs font-mono text-neutral-300">Java</span>
+              <span class="px-2.5 py-1 rounded bg-dark border border-borderDark text-xs font-mono text-neutral-300">Python</span>
+              <span class="px-2.5 py-1 rounded bg-dark border border-borderDark text-xs font-mono text-neutral-300">C</span>
+              <span class="px-2.5 py-1 rounded bg-dark border border-borderDark text-xs font-mono text-neutral-300">Data Analytics</span>
+              <span class="px-2.5 py-1 rounded bg-dark border border-borderDark text-xs font-mono text-neutral-300">OOP &amp; Data Structures</span>
+              <span class="px-2.5 py-1 rounded bg-dark border border-borderDark text-xs font-mono text-neutral-300">Algorithms &amp; Sorting</span>
+              <span class="px-2.5 py-1 rounded bg-dark border border-borderDark text-xs font-mono text-neutral-300">MySQL Basics</span>
+              <span class="px-2.5 py-1 rounded bg-dark border border-borderDark text-xs font-mono text-neutral-300">Git &amp; GitHub</span>
+            </div>
+          </div>
+
+          <div>
+            <h5 class="text-xs font-mono uppercase text-brand font-bold mb-1">Featured Projects</h5>
+            <ul class="space-y-1.5 text-xs text-neutral-400 list-disc list-inside">
+              <li><strong>Student Depression Calculator:</strong> Psychological risk index model factoring sleep, workload, and social wellness.</li>
+              <li><strong>Student Management System:</strong> Console-based Java application with encapsulation and modular records.</li>
+              <li><strong>Sorting Algorithms Benchmarking:</strong> Bubble, Selection, and Insertion Sort with runtime analysis.</li>
+            </ul>
+          </div>
+
+          <div class="pt-2 flex flex-wrap gap-3 justify-between items-center">
+            <div class="flex items-center gap-2">
+              <a href="https://mail.google.com/mail/?view=cm&fs=1&to=nitinb0407@gmail.com&su=Portfolio%20Inquiry%20-%20Nitin%20B" target="_blank" rel="noopener noreferrer" onclick="handleDirectEmail(event)" class="px-5 py-2.5 bg-brand text-black font-bold text-xs uppercase tracking-wider rounded-full hover:bg-white transition-all inline-flex items-center gap-2 shadow-lg shadow-brand/25 hover:scale-105" title="Redirect to Mail (nitinb0407@gmail.com)">
+                <svg class="w-4 h-4 fill-none stroke-current stroke-2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+                  <rect width="20" height="16" x="2" y="4" rx="2"/>
+                  <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+                </svg>
+                Email Nitin
+              </a>
+              <a href="https://www.linkedin.com/in/nitin-b-a023003ab?utm_source=share_via&utm_content=profile&utm_medium=member_android" target="_blank" rel="noopener noreferrer" class="p-2.5 rounded-full border border-borderDark hover:border-brand text-neutral-300 hover:text-brand transition-colors" title="LinkedIn">
+                <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.46 10.9v8.37H9.2V10.9H6.46M7.83 6.45a1.64 1.64 0 1 0 0 3.28 1.64 1.64 0 0 0 0-3.28Z"/></svg>
+              </a>
+              <a href="https://github.com/nitinb0407" target="_blank" rel="noopener noreferrer" class="p-2.5 rounded-full border border-borderDark hover:border-brand text-neutral-300 hover:text-brand transition-colors" title="GitHub">
+                <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
+              </a>
+            </div>
+            <button onclick="closeModal()" class="px-4 py-2 text-neutral-400 hover:text-white text-xs uppercase tracking-wider font-semibold">
+              Close
+            </button>
+          </div>
+        </div>
+      `;
+      openModal('Curriculum Vitae — Nitin B', content);
+    }
+
+    // 14. Contact Form Submission Handler
+    async function handleFormSubmit(e) {
+      e.preventDefault();
+      const submitBtn = document.getElementById('submitBtn');
+      const name = document.getElementById('senderName').value.trim();
+      const email = document.getElementById('senderEmail').value.trim();
+      const subject = document.getElementById('messageSubject').value.trim() || 'Portfolio Inquiry';
+      const message = document.getElementById('senderMessage').value.trim();
+      const feedback = document.getElementById('formFeedback');
+
+      if (!name || !email || !message) {
+        showToast('Please fill out all required fields!');
+        return;
+      }
+
+      // UI Loading state
+      submitBtn.disabled = true;
+      submitBtn.innerHTML = `<span>Saving to Server Database...</span><div class="w-4 h-4 border-2 border-black border-t-transparent rounded-full animate-spin"></div>`;
+      feedback.classList.add('hidden');
+
+      try {
+        const response = await fetch('/api/contact', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ name, email, subject, message })
+        });
+
+        const result = await response.json();
+
+        if (response.ok && result.success) {
+          // Success state
+          feedback.classList.remove('hidden', 'text-rose-400');
+          feedback.classList.add('text-brand');
+          feedback.innerHTML = `✓ Message saved successfully! (Inquiry #${result.submission_id} · ${result.created_at})<br/><span class="text-neutral-400 text-[11px]">Stored permanently in your backend SQLite database.</span>`;
+
+          showToast(`✓ Message received from ${name}! Stored in database.`);
+          document.getElementById('contactForm').reset();
+        } else {
+          throw new Error(result.error || 'Server error occurred');
+        }
+      } catch (err) {
+        console.error('Contact submission error:', err);
+        feedback.classList.remove('hidden', 'text-brand');
+        feedback.classList.add('text-rose-400');
+        feedback.innerHTML = `Could not reach backend: ${err.message}. <a href="https://mail.google.com/mail/?view=cm&fs=1&to=nitinb0407@gmail.com&su=${encodeURIComponent(subject)}&body=${encodeURIComponent(message)}" target="_blank" class="underline text-brand">Send directly via Gmail instead</a>`;
+        showToast('Submission error. Direct mail fallback available.');
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = `<span>Send Message</span><i data-lucide="send" class="w-4 h-4"></i>`;
+        if (window.lucide && lucide.createIcons) lucide.createIcons();
+      }
+    }
+
+    // 14. Backend SQLite Messages Viewer
+    async function openInboxModal() {
+      openModal('Contact Inquiries (Backend SQLite Database)', `
+        <div class="space-y-4">
+          <div class="flex items-center justify-between pb-3 border-b border-borderDark text-xs font-mono">
+            <div class="text-neutral-400">Database: <span class="text-brand font-bold">contact_messages.db</span></div>
+            <button onclick="refreshInboxMessages()" class="px-3 py-1 bg-surface border border-borderDark rounded-lg hover:border-brand text-neutral-300 hover:text-brand flex items-center gap-1.5 transition-colors">
+              <svg class="w-3.5 h-3.5 fill-none stroke-current stroke-2" viewBox="0 0 24 24"><path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"/><path d="M8 16H3v5"/></svg>
+              <span>Refresh</span>
+            </button>
+          </div>
+          <div id="inboxList" class="space-y-3 max-h-[440px] overflow-y-auto pr-1">
+            <div class="text-center py-8 text-neutral-500 font-mono text-xs">Loading inquiries from backend server...</div>
+          </div>
+        </div>
+      `);
+      refreshInboxMessages();
+    }
+
+    async function refreshInboxMessages() {
+      const container = document.getElementById('inboxList');
+      if (!container) return;
+      try {
+        const res = await fetch('/api/contact/messages');
+        const data = await res.json();
+        if (data.success && data.messages.length > 0) {
+          container.innerHTML = data.messages.map(m => `
+            <div class="p-4 rounded-xl bg-dark border border-borderDark text-left hover:border-brand/40 transition-all">
+              <div class="flex flex-wrap items-center justify-between gap-2 mb-1.5">
+                <span class="font-bold text-sm text-white font-display flex items-center gap-2">
+                  <span class="w-1.5 h-1.5 rounded-full bg-brand"></span>
+                  ${escapeHtml(m.name)}
+                </span>
+                <span class="font-mono text-[10px] text-neutral-500 bg-surface px-2 py-0.5 rounded border border-borderDark">${m.created_at}</span>
+              </div>
+              <div class="text-xs font-mono text-brand mb-2">
+                <a href="mailto:${escapeHtml(m.email)}" class="hover:underline">${escapeHtml(m.email)}</a>
+                <span class="text-neutral-500 mx-1.5">·</span>
+                <span class="text-neutral-300 font-semibold">${escapeHtml(m.subject)}</span>
+              </div>
+              <p class="text-xs text-neutral-300 bg-surface/70 p-3 rounded-lg border border-borderDark/60 whitespace-pre-wrap leading-relaxed">${escapeHtml(m.message)}</p>
+            </div>
+          `).join('');
+        } else {
+          container.innerHTML = `<div class="text-center py-10 text-neutral-500 font-mono text-xs">No contact inquiries stored yet.<br/><span class="text-neutral-600 mt-1 block">Fill out the contact form below to test saving into the database!</span></div>`;
+        }
+      } catch (err) {
+        container.innerHTML = `<div class="text-center py-8 text-rose-400 font-mono text-xs">Failed to connect to backend server: ${err.message}</div>`;
+      }
+      if (window.lucide && lucide.createIcons) lucide.createIcons();
+    }
+  </script>
+</body>
+</html>
