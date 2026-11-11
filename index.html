@@ -119,12 +119,13 @@
       </a>
 
       <!-- Desktop Nav Links -->
-      <div class="hidden md:flex items-center space-x-10 text-xs font-semibold uppercase tracking-wider text-neutral-400">
+      <div class="hidden md:flex items-center space-x-8 text-xs font-semibold uppercase tracking-wider text-neutral-400">
         <a href="#hero" class="nav-link hover:text-brand transition-colors">Home</a>
         <a href="#about" class="nav-link hover:text-brand transition-colors">About</a>
         <a href="#skills" class="nav-link hover:text-brand transition-colors">Skills</a>
         <a href="#projects" class="nav-link hover:text-brand transition-colors">Projects</a>
         <a href="#contact" class="nav-link hover:text-brand transition-colors">Contact</a>
+        <a href="#admin" class="nav-link hover:text-brand transition-colors">Admin</a>
       </div>
 
       <!-- Action buttons -->
@@ -150,6 +151,7 @@
       <a href="#skills" onclick="closeMobileMenu()" class="mobile-nav-link block text-sm font-semibold uppercase tracking-wider text-neutral-300 hover:text-brand">Skills</a>
       <a href="#projects" onclick="closeMobileMenu()" class="mobile-nav-link block text-sm font-semibold uppercase tracking-wider text-neutral-300 hover:text-brand">Projects</a>
       <a href="#contact" onclick="closeMobileMenu()" class="mobile-nav-link block text-sm font-semibold uppercase tracking-wider text-neutral-300 hover:text-brand">Contact</a>
+      <a href="#admin" onclick="closeMobileMenu()" class="mobile-nav-link block text-sm font-semibold uppercase tracking-wider text-neutral-300 hover:text-brand">Admin</a>
       <div class="pt-4 border-t border-borderDark flex flex-col gap-3">
         <button onclick="openResumeModal(); closeMobileMenu();" class="w-full text-center py-2.5 rounded-full border border-neutral-700 text-xs font-bold uppercase tracking-wider text-neutral-200 hover:border-brand hover:text-brand">
           View Resume
@@ -673,7 +675,10 @@
   <section id="contact" class="py-24 border-b border-borderDark relative overflow-hidden">
     <div class="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center">
       <div>
-        <span class="text-xs uppercase tracking-widest text-brand font-mono font-semibold">Get Connected</span>
+        <div class="flex items-center gap-3 flex-wrap">
+          <span class="text-xs uppercase tracking-widest text-brand font-mono font-semibold">Get Connected</span>
+          <span id="contactAvailabilityText" class="px-2.5 py-0.5 rounded-full text-[10px] font-mono uppercase tracking-wider bg-brand/10 border border-brand/30 text-brand">Available for Opportunities</span>
+        </div>
         <h2 class="font-display font-black text-5xl sm:text-7xl text-metallic mb-6 mt-1">
           Get in<br/>touch
         </h2>
@@ -683,9 +688,7 @@
 
         <!-- Direct Email Link with Copy Button -->
         <div class="flex items-center gap-3 flex-wrap">
-          <a href="https://mail.google.com/mail/?view=cm&fs=1&to=nitinb0407@gmail.com&su=Portfolio%20Inquiry%20-%20Nitin%20B" target="_blank" rel="noopener noreferrer" onclick="handleDirectEmail(event)" class="text-xl sm:text-2xl font-semibold text-brand underline underline-offset-4 hover:text-white transition-colors font-mono" title="Click to redirect to Gmail (nitinb0407@gmail.com)">
-            nitinb0407@gmail.com
-          </a>
+          <a id="contactEmailLink" href="https://mail.google.com/mail/?view=cm&fs=1&to=nitinb0407@gmail.com&su=Portfolio%20Inquiry%20-%20Nitin%20B" target="_blank" rel="noopener noreferrer" onclick="handleDirectEmail(event)" class="text-xl sm:text-2xl font-semibold text-brand underline underline-offset-4 hover:text-white transition-colors font-mono" title="Click to redirect to Gmail (nitinb0407@gmail.com)">nitinb0407@gmail.com</a>
           <button onclick="copyEmail()" title="Copy email address" class="p-2 rounded-lg bg-surface border border-borderDark hover:border-brand hover:text-brand text-neutral-400 transition-colors">
             <i data-lucide="copy" class="w-4 h-4"></i>
           </button>
@@ -694,30 +697,30 @@
         <div class="mt-8 space-y-2.5 text-xs font-mono text-neutral-400">
           <p class="flex items-center gap-2">
             <i data-lucide="phone" class="w-4 h-4 text-brand"></i>
-            <a href="tel:+919353512112" class="hover:text-white transition-colors">+91 93535 12112</a>
+            <a id="contactPhoneLink" href="tel:+919353512112" class="hover:text-white transition-colors">+91 93535 12112</a>
           </p>
           <p class="flex items-center gap-2">
             <i data-lucide="map-pin" class="w-4 h-4 text-brand"></i>
-            <span>Bengaluru, Karnataka, India</span>
+            <span id="contactLocationText">Bengaluru, Karnataka, India</span>
           </p>
           <p class="flex items-center gap-2">
             <i data-lucide="graduation-cap" class="w-4 h-4 text-brand"></i>
-            <span>Jain University · CSE (AI &amp; ML) · CGPA 7.5</span>
+            <span id="contactEducationText">Jain University · CSE (AI &amp; ML) · CGPA 7.5</span>
           </p>
 
           <!-- Social Icon Links with Dedicated SVGs & Working Links -->
           <div class="flex gap-4 pt-4">
-            <a href="https://www.linkedin.com/in/nitin-b-a023003ab?utm_source=share_via&utm_content=profile&utm_medium=member_android" target="_blank" rel="noopener noreferrer" class="p-3 rounded-xl bg-surface border border-borderDark hover:border-brand hover:text-brand transition-all flex items-center justify-center text-neutral-300 hover:scale-105 shadow-md" title="Nitin B on LinkedIn">
+            <a id="contactLinkedinLink" href="https://www.linkedin.com/in/nitin-b-a023003ab?utm_source=share_via&utm_content=profile&utm_medium=member_android" target="_blank" rel="noopener noreferrer" class="p-3 rounded-xl bg-surface border border-borderDark hover:border-brand hover:text-brand transition-all flex items-center justify-center text-neutral-300 hover:scale-105 shadow-md" title="Nitin B on LinkedIn">
               <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24">
                 <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.46 10.9v8.37H9.2V10.9H6.46M7.83 6.45a1.64 1.64 0 1 0 0 3.28 1.64 1.64 0 0 0 0-3.28Z"/>
               </svg>
             </a>
-            <a href="https://github.com/nitinb0407" target="_blank" rel="noopener noreferrer" class="p-3 rounded-xl bg-surface border border-borderDark hover:border-brand hover:text-brand transition-all flex items-center justify-center text-neutral-300 hover:scale-105 shadow-md" title="Nitin B on GitHub">
+            <a id="contactGithubLink" href="https://github.com/nitinb0407" target="_blank" rel="noopener noreferrer" class="p-3 rounded-xl bg-surface border border-borderDark hover:border-brand hover:text-brand transition-all flex items-center justify-center text-neutral-300 hover:scale-105 shadow-md" title="Nitin B on GitHub">
               <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24">
                 <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/>
               </svg>
             </a>
-            <a href="https://mail.google.com/mail/?view=cm&fs=1&to=nitinb0407@gmail.com&su=Portfolio%20Inquiry%20-%20Nitin%20B" target="_blank" rel="noopener noreferrer" onclick="handleDirectEmail(event)" class="p-3 rounded-xl bg-surface border border-borderDark hover:border-brand hover:text-brand transition-all flex items-center justify-center text-neutral-300 hover:scale-105 shadow-md" title="Redirect to Gmail (nitinb0407@gmail.com)">
+            <a id="contactMailIconLink" href="https://mail.google.com/mail/?view=cm&fs=1&to=nitinb0407@gmail.com&su=Portfolio%20Inquiry%20-%20Nitin%20B" target="_blank" rel="noopener noreferrer" onclick="handleDirectEmail(event)" class="p-3 rounded-xl bg-surface border border-borderDark hover:border-brand hover:text-brand transition-all flex items-center justify-center text-neutral-300 hover:scale-105 shadow-md" title="Redirect to Gmail (nitinb0407@gmail.com)">
               <svg class="w-5 h-5 fill-none stroke-current stroke-2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
                 <rect width="20" height="16" x="2" y="4" rx="2"/>
                 <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
@@ -758,17 +761,330 @@
         <p id="formFeedback" class="text-xs font-mono text-center hidden"></p>
 
         <!-- Backend Database & Inbox Status Bar -->
-        <div class="mt-4 pt-3 border-t border-borderDark/70 flex items-center justify-between text-[11px] font-mono text-neutral-400">
+        <div class="mt-4 pt-3 border-t border-borderDark/70 flex flex-wrap items-center justify-between gap-2 text-[11px] font-mono text-neutral-400">
           <div class="flex items-center gap-2">
             <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
             <span class="text-neutral-400">Backend API &amp; SQLite DB Active</span>
           </div>
-          <button type="button" onclick="openInboxModal()" class="text-brand hover:text-white transition-colors flex items-center gap-1.5 underline underline-offset-2">
-            <svg class="w-3.5 h-3.5 fill-none stroke-current stroke-2" viewBox="0 0 24 24"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
-            <span>View Stored Inquiries</span>
-          </button>
+          <div class="flex items-center gap-3">
+            <button type="button" onclick="openInboxModal()" class="text-brand hover:text-white transition-colors flex items-center gap-1.5 underline underline-offset-2">
+              <svg class="w-3.5 h-3.5 fill-none stroke-current stroke-2" viewBox="0 0 24 24"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+              <span>View Stored Inquiries</span>
+            </button>
+            <a href="#admin" class="px-2.5 py-1 rounded-md bg-brand/10 border border-brand/30 text-brand hover:bg-brand hover:text-black transition-colors font-semibold">
+              Admin Section
+            </a>
+          </div>
         </div>
       </form>
+    </div>
+  </section>
+
+  <!-- ================= ADMIN CONSOLE SECTION ================= -->
+  <section id="admin" class="py-24 border-b border-borderDark bg-[#0a0a0a] relative overflow-hidden">
+    <div class="max-w-6xl mx-auto px-6">
+      <!-- Admin Header -->
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10">
+        <div>
+          <span class="text-xs uppercase tracking-widest text-brand font-mono font-semibold flex items-center gap-2">
+            <i data-lucide="shield-check" class="w-4 h-4"></i>
+            <span>Owner Control Center</span>
+          </span>
+          <h2 class="font-display font-black text-4xl sm:text-6xl text-metallic mt-1">
+            ADMIN SECTION
+          </h2>
+          <p class="text-neutral-400 mt-2 text-sm max-w-2xl">
+            Enter demo credentials to access <strong class="text-neutral-200">Admin Details</strong>, manage <strong class="text-neutral-200">Get in Touch</strong> details, and view all submitted <strong class="text-neutral-200">Send Message</strong> records.
+          </p>
+        </div>
+
+        <!-- Locked Status Indicator (Shown when locked) -->
+        <div id="adminLockedStatusBadge" class="flex items-center gap-2 px-3.5 py-2 rounded-xl bg-surface border border-borderDark text-xs font-mono text-amber-400 self-start md:self-auto">
+          <i data-lucide="lock" class="w-3.5 h-3.5"></i>
+          <span>Locked · Sign In Required</span>
+        </div>
+
+        <!-- Unlocked Controls Toolbar (Hidden until authenticated) -->
+        <div id="adminUnlockedToolbar" class="hidden flex-wrap items-center gap-2.5">
+          <span id="adminSyncStatus" class="px-3 py-2 rounded-xl bg-surface border border-borderDark text-[11px] font-mono text-emerald-400 flex items-center gap-1.5">
+            <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+            <span>SQLite Live</span>
+          </span>
+          <button type="button" onclick="loadAdminDashboard(true)" class="px-3.5 py-2 rounded-xl bg-surface border border-borderDark hover:border-brand hover:text-brand text-xs font-mono text-neutral-300 transition-colors flex items-center gap-1.5">
+            <i data-lucide="refresh-cw" class="w-3.5 h-3.5"></i>
+            <span>Refresh</span>
+          </button>
+          <button type="button" onclick="exportAdminData()" class="px-3.5 py-2 rounded-xl bg-surface border border-borderDark hover:border-brand hover:text-brand text-xs font-mono text-neutral-300 transition-colors flex items-center gap-1.5">
+            <i data-lucide="download" class="w-3.5 h-3.5"></i>
+            <span>Export JSON</span>
+          </button>
+          <button type="button" id="adminLockToggleBtn" onclick="lockAdminPanel()" class="px-3.5 py-2 rounded-xl bg-surface border border-borderDark hover:border-rose-400 hover:text-rose-400 text-xs font-mono text-neutral-300 transition-colors flex items-center gap-1.5">
+            <i data-lucide="log-out" class="w-3.5 h-3.5"></i>
+            <span>Lock / Logout</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Demo Credentials Login Gate (Visible by default until signed in) -->
+      <div id="adminLockedOverlay" class="bg-surface border border-borderDark rounded-2xl p-8 max-w-md mx-auto shadow-2xl">
+        <div class="w-12 h-12 rounded-2xl bg-brand/10 border border-brand/30 text-brand flex items-center justify-center mx-auto mb-4">
+          <i data-lucide="lock" class="w-6 h-6"></i>
+        </div>
+        <h3 class="font-display font-bold text-2xl text-white text-center mb-1">Admin Login Required</h3>
+        <p class="text-xs text-neutral-400 text-center mb-5 font-mono">
+          Only authenticated users can view content in the Admin block.
+        </p>
+
+        <!-- Demo Credentials Info Box -->
+        <div class="mb-5 p-3.5 rounded-xl bg-dark border border-brand/30 text-xs font-mono space-y-1.5">
+          <div class="flex items-center justify-between gap-2 pb-1.5 border-b border-borderDark">
+            <span class="text-[10px] uppercase tracking-widest text-brand font-bold">Demo Credentials</span>
+            <button type="button" onclick="fillDemoCredentials()" class="text-[11px] text-brand hover:text-white underline underline-offset-2 transition-colors">
+              Fill Credentials
+            </button>
+          </div>
+          <div class="flex items-center justify-between text-neutral-300">
+            <span class="text-neutral-500">Username:</span>
+            <code class="text-brand font-bold select-all">admin</code>
+          </div>
+          <div class="flex items-center justify-between text-neutral-300">
+            <span class="text-neutral-500">Password:</span>
+            <code class="text-brand font-bold select-all">nitin2026</code>
+          </div>
+        </div>
+
+        <form id="adminLoginForm" onsubmit="unlockAdminPanel(event)" class="space-y-3.5">
+          <div>
+            <label for="adminUsernameInput" class="block text-[10px] font-mono uppercase text-neutral-400 mb-1">Username *</label>
+            <input type="text" id="adminUsernameInput" required autocomplete="username" placeholder="Enter demo username (admin)" class="w-full bg-dark border border-borderDark rounded-xl px-3.5 py-2.5 font-mono text-sm text-white placeholder-neutral-600 focus:outline-none focus:border-brand" />
+          </div>
+          <div>
+            <label for="adminPasswordInput" class="block text-[10px] font-mono uppercase text-neutral-400 mb-1">Password *</label>
+            <input type="password" id="adminPasswordInput" required autocomplete="current-password" placeholder="Enter demo password (nitin2026)" class="w-full bg-dark border border-borderDark rounded-xl px-3.5 py-2.5 font-mono text-sm text-white placeholder-neutral-600 focus:outline-none focus:border-brand" />
+          </div>
+          <p id="adminLoginError" class="hidden text-xs font-mono text-rose-400 text-center"></p>
+          <button type="submit" id="adminLoginBtn" class="w-full py-3 rounded-xl bg-brand text-black font-bold uppercase tracking-wider text-xs hover:bg-white transition-colors flex items-center justify-center gap-2">
+            <i data-lucide="unlock" class="w-4 h-4"></i>
+            <span>Unlock Admin Block</span>
+          </button>
+        </form>
+      </div>
+
+      <!-- Unlocked Admin Block Content (Hidden until demo credentials are verified) -->
+      <div id="adminUnlockedContent" class="hidden space-y-8">
+        <!-- KPI Overview Cards -->
+        <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
+          <div class="p-5 rounded-2xl bg-surface border border-borderDark">
+            <div class="text-[11px] font-mono uppercase tracking-wider text-neutral-400 mb-1">Sent Messages</div>
+            <div id="adminStatTotal" class="font-display font-black text-3xl text-white">0</div>
+            <div class="text-[11px] font-mono text-neutral-500 mt-1">From Get in Touch form</div>
+          </div>
+          <div class="p-5 rounded-2xl bg-surface border border-borderDark">
+            <div class="text-[11px] font-mono uppercase tracking-wider text-neutral-400 mb-1">Unread</div>
+            <div id="adminStatUnread" class="font-display font-black text-3xl text-brand">0</div>
+            <div class="text-[11px] font-mono text-neutral-500 mt-1">Awaiting review</div>
+          </div>
+          <div class="p-5 rounded-2xl bg-surface border border-borderDark">
+            <div class="text-[11px] font-mono uppercase tracking-wider text-neutral-400 mb-1">Read</div>
+            <div id="adminStatRead" class="font-display font-black text-3xl text-emerald-400">0</div>
+            <div class="text-[11px] font-mono text-neutral-500 mt-1">Marked read</div>
+          </div>
+          <div class="p-5 rounded-2xl bg-surface border border-borderDark">
+            <div class="text-[11px] font-mono uppercase tracking-wider text-neutral-400 mb-1">SQLite DB Sync</div>
+            <div id="adminStatStatus" class="font-display font-bold text-lg text-white flex items-center gap-2 mt-1">
+              <span class="w-2.5 h-2.5 rounded-full bg-emerald-400"></span>
+              <span>Synced</span>
+            </div>
+            <div id="adminStatUpdated" class="text-[11px] font-mono text-neutral-500 mt-1.5 truncate">Table: contact_info &amp; messages</div>
+          </div>
+        </div>
+
+        <!-- 2-Column Workspace: Left = Admin Details + Get in Touch Details | Right = Sent Messages -->
+        <div class="grid lg:grid-cols-12 gap-8 items-start">
+          <!-- LEFT COLUMN (5 cols): Admin Details + Get in Touch Details -->
+          <div class="lg:col-span-5 space-y-6">
+            <!-- Card 1: Admin Details -->
+            <div class="bg-surface border border-borderDark rounded-2xl p-6 space-y-4 shadow-xl">
+              <div class="flex items-center justify-between gap-2 pb-3 border-b border-borderDark">
+                <div>
+                  <span class="text-[10px] font-mono uppercase tracking-widest text-brand">Session &amp; Owner Profile</span>
+                  <h3 class="font-display font-bold text-xl text-white">Admin Details</h3>
+                </div>
+                <span class="px-2.5 py-1 rounded-lg bg-emerald-400/10 border border-emerald-400/30 text-[10px] font-mono uppercase text-emerald-400">Verified</span>
+              </div>
+
+              <div class="space-y-2.5 text-xs font-mono">
+                <div class="flex items-center justify-between gap-2 p-3 rounded-xl bg-dark border border-borderDark/80">
+                  <span class="text-neutral-500">Owner:</span>
+                  <span id="adminDetailOwner" class="text-white font-semibold">Nitin B</span>
+                </div>
+                <div class="flex items-center justify-between gap-2 p-3 rounded-xl bg-dark border border-borderDark/80">
+                  <span class="text-neutral-500">Admin Username:</span>
+                  <code id="adminDetailUsername" class="text-brand font-bold">admin</code>
+                </div>
+                <div class="flex items-center justify-between gap-2 p-3 rounded-xl bg-dark border border-borderDark/80">
+                  <span class="text-neutral-500">Role:</span>
+                  <span id="adminDetailRole" class="text-neutral-200 text-right">Portfolio Owner &amp; Administrator</span>
+                </div>
+                <div class="flex items-center justify-between gap-2 p-3 rounded-xl bg-dark border border-borderDark/80">
+                  <span class="text-neutral-500">Database:</span>
+                  <code id="adminDetailDatabase" class="text-neutral-300">contact_messages.db</code>
+                </div>
+                <div class="flex items-center justify-between gap-2 p-3 rounded-xl bg-dark border border-borderDark/80">
+                  <span class="text-neutral-500">Authenticated At:</span>
+                  <span id="adminDetailAuthTime" class="text-neutral-400">--</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Card 2: Get in Touch Details (Preview + Inline Editor) -->
+            <div class="bg-surface border border-borderDark rounded-2xl p-6 space-y-5 shadow-xl">
+              <div class="flex items-center justify-between gap-2 pb-4 border-b border-borderDark">
+                <div>
+                  <span class="text-[10px] font-mono uppercase tracking-widest text-brand">Contact Channels</span>
+                  <h3 class="font-display font-bold text-xl text-white">Get in Touch Details</h3>
+                </div>
+                <button type="button" id="toggleEditContactBtn" onclick="toggleEditContactInfo()" class="px-3 py-1.5 rounded-lg bg-dark border border-borderDark hover:border-brand hover:text-brand text-xs font-mono text-neutral-300 transition-colors flex items-center gap-1.5">
+                  <i data-lucide="edit-3" class="w-3.5 h-3.5"></i>
+                  <span>Edit Details</span>
+                </button>
+              </div>
+
+              <!-- Read-Only Get in Touch Summary Card -->
+              <div id="adminContactViewCard" class="space-y-3 text-xs font-mono">
+                <div class="p-3 rounded-xl bg-dark border border-borderDark/80">
+                  <div class="text-[10px] uppercase text-neutral-500 mb-1">Primary Email (Gmail Redirect)</div>
+                  <div class="flex items-center justify-between gap-2">
+                    <a id="adminInfoEmail" href="https://mail.google.com/mail/?view=cm&fs=1&to=nitinb0407@gmail.com&su=Portfolio%20Inquiry%20-%20Nitin%20B" target="_blank" rel="noopener noreferrer" onclick="handleDirectEmail(event)" class="text-brand hover:underline font-semibold break-all">nitinb0407@gmail.com</a>
+                    <button type="button" onclick="copyEmail()" class="p-1.5 rounded-lg bg-surface border border-borderDark hover:border-brand text-neutral-400 hover:text-brand" title="Copy Email">
+                      <i data-lucide="copy" class="w-3.5 h-3.5"></i>
+                    </button>
+                  </div>
+                </div>
+
+                <div class="p-3 rounded-xl bg-dark border border-borderDark/80">
+                  <div class="text-[10px] uppercase text-neutral-500 mb-1">Phone Number</div>
+                  <a id="adminInfoPhone" href="tel:+919353512112" class="text-white hover:text-brand transition-colors">+91 93535 12112</a>
+                </div>
+
+                <div class="p-3 rounded-xl bg-dark border border-borderDark/80">
+                  <div class="text-[10px] uppercase text-neutral-500 mb-1">Location</div>
+                  <div id="adminInfoLocation" class="text-neutral-200">Bengaluru, Karnataka, India</div>
+                </div>
+
+                <div class="p-3 rounded-xl bg-dark border border-borderDark/80">
+                  <div class="text-[10px] uppercase text-neutral-500 mb-1">Education &amp; Academic Standing</div>
+                  <div id="adminInfoEducation" class="text-neutral-200">Jain University · CSE (AI &amp; ML) · CGPA 7.5</div>
+                </div>
+
+                <div class="p-3 rounded-xl bg-dark border border-borderDark/80 flex items-center justify-between gap-2">
+                  <div>
+                    <div class="text-[10px] uppercase text-neutral-500 mb-1">Availability Status</div>
+                    <div id="adminInfoAvailability" class="text-emerald-400 font-semibold">Available for Opportunities</div>
+                  </div>
+                  <span class="w-2.5 h-2.5 rounded-full bg-emerald-400"></span>
+                </div>
+
+                <div class="p-3 rounded-xl bg-dark border border-borderDark/80 space-y-2">
+                  <div class="text-[10px] uppercase text-neutral-500">Social Links</div>
+                  <div class="flex flex-wrap gap-2">
+                    <a id="adminInfoLinkedin" href="https://www.linkedin.com/in/nitin-b-a023003ab?utm_source=share_via&utm_content=profile&utm_medium=member_android" target="_blank" rel="noopener noreferrer" class="px-3 py-1.5 rounded-lg bg-surface border border-borderDark hover:border-brand hover:text-brand text-neutral-300 transition-colors inline-flex items-center gap-1.5">
+                      <span>LinkedIn</span>
+                      <i data-lucide="external-link" class="w-3 h-3"></i>
+                    </a>
+                    <a id="adminInfoGithub" href="https://github.com/nitinb0407" target="_blank" rel="noopener noreferrer" class="px-3 py-1.5 rounded-lg bg-surface border border-borderDark hover:border-brand hover:text-brand text-neutral-300 transition-colors inline-flex items-center gap-1.5">
+                      <span>GitHub</span>
+                      <i data-lucide="external-link" class="w-3 h-3"></i>
+                    </a>
+                  </div>
+                </div>
+
+                <div class="text-[11px] text-neutral-500 flex items-center justify-between pt-1">
+                  <span>Table: <code class="text-neutral-300">contact_info</code></span>
+                  <span id="adminInfoUpdatedAt">Updated: --</span>
+                </div>
+              </div>
+
+              <!-- Inline Edit Form (Hidden until Edit Details clicked) -->
+              <form id="adminContactEditForm" onsubmit="saveAdminContactInfo(event)" class="hidden space-y-3 text-xs font-mono pt-1">
+                <div>
+                  <label for="editContactEmail" class="block text-[10px] uppercase text-neutral-400 mb-1">Email *</label>
+                  <input type="email" id="editContactEmail" required class="w-full bg-dark border border-borderDark rounded-xl px-3 py-2 text-white focus:outline-none focus:border-brand" />
+                </div>
+                <div>
+                  <label for="editContactPhone" class="block text-[10px] uppercase text-neutral-400 mb-1">Phone *</label>
+                  <input type="text" id="editContactPhone" required class="w-full bg-dark border border-borderDark rounded-xl px-3 py-2 text-white focus:outline-none focus:border-brand" />
+                </div>
+                <div>
+                  <label for="editContactLocation" class="block text-[10px] uppercase text-neutral-400 mb-1">Location *</label>
+                  <input type="text" id="editContactLocation" required class="w-full bg-dark border border-borderDark rounded-xl px-3 py-2 text-white focus:outline-none focus:border-brand" />
+                </div>
+                <div>
+                  <label for="editContactEducation" class="block text-[10px] uppercase text-neutral-400 mb-1">Education &amp; CGPA *</label>
+                  <input type="text" id="editContactEducation" required class="w-full bg-dark border border-borderDark rounded-xl px-3 py-2 text-white focus:outline-none focus:border-brand" />
+                </div>
+                <div>
+                  <label for="editContactAvailability" class="block text-[10px] uppercase text-neutral-400 mb-1">Availability *</label>
+                  <input type="text" id="editContactAvailability" required class="w-full bg-dark border border-borderDark rounded-xl px-3 py-2 text-white focus:outline-none focus:border-brand" />
+                </div>
+                <div>
+                  <label for="editContactLinkedin" class="block text-[10px] uppercase text-neutral-400 mb-1">LinkedIn URL *</label>
+                  <input type="url" id="editContactLinkedin" required class="w-full bg-dark border border-borderDark rounded-xl px-3 py-2 text-white focus:outline-none focus:border-brand" />
+                </div>
+                <div>
+                  <label for="editContactGithub" class="block text-[10px] uppercase text-neutral-400 mb-1">GitHub URL *</label>
+                  <input type="url" id="editContactGithub" required class="w-full bg-dark border border-borderDark rounded-xl px-3 py-2 text-white focus:outline-none focus:border-brand" />
+                </div>
+
+                <p id="adminContactSaveMsg" class="hidden text-[11px] text-center"></p>
+
+                <div class="flex items-center gap-2 pt-2">
+                  <button type="submit" id="saveContactInfoBtn" class="flex-1 py-2.5 rounded-xl bg-brand text-black font-bold uppercase tracking-wider text-xs hover:bg-white transition-colors">
+                    Save &amp; Sync Page
+                  </button>
+                  <button type="button" onclick="toggleEditContactInfo(false)" class="px-4 py-2.5 rounded-xl bg-dark border border-borderDark text-neutral-300 hover:text-white text-xs uppercase tracking-wider">
+                    Cancel
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+
+          <!-- RIGHT COLUMN (7 cols): Sent Messages from Get in Touch Form -->
+          <div class="lg:col-span-7 bg-surface border border-borderDark rounded-2xl p-6 space-y-4 shadow-xl">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-4 border-b border-borderDark">
+              <div>
+                <span class="text-[10px] font-mono uppercase tracking-widest text-brand">Get in Touch Send Message Feed</span>
+                <h3 class="font-display font-bold text-xl text-white">Sent Messages</h3>
+              </div>
+              <button type="button" onclick="markAllMessagesRead()" class="px-3 py-1.5 rounded-lg bg-dark border border-borderDark hover:border-brand hover:text-brand text-xs font-mono text-neutral-300 transition-colors flex items-center gap-1.5 self-start sm:self-auto">
+                <i data-lucide="check-check" class="w-3.5 h-3.5"></i>
+                <span>Mark All Read</span>
+              </button>
+            </div>
+
+            <!-- Search & Filter Bar -->
+            <div class="flex flex-col sm:flex-row gap-3 items-stretch sm:items-center justify-between">
+              <div class="relative flex-1">
+                <input type="text" id="adminMessageSearch" oninput="renderAdminMessages()" placeholder="Search sender name, email, subject, or message..." class="w-full bg-dark border border-borderDark rounded-xl pl-9 pr-3 py-2 text-xs font-mono text-white placeholder-neutral-600 focus:outline-none focus:border-brand" />
+                <i data-lucide="search" class="w-3.5 h-3.5 text-neutral-500 absolute left-3 top-1/2 -translate-y-1/2"></i>
+              </div>
+              <div class="flex items-center gap-1.5 text-xs font-mono">
+                <button type="button" id="filterBtnAll" onclick="setAdminMessageFilter('all')" class="px-3 py-1.5 rounded-lg bg-brand text-black font-bold transition-colors">All</button>
+                <button type="button" id="filterBtnUnread" onclick="setAdminMessageFilter('unread')" class="px-3 py-1.5 rounded-lg bg-dark border border-borderDark text-neutral-300 hover:border-brand transition-colors">Unread</button>
+                <button type="button" id="filterBtnRead" onclick="setAdminMessageFilter('read')" class="px-3 py-1.5 rounded-lg bg-dark border border-borderDark text-neutral-300 hover:border-brand transition-colors">Read</button>
+              </div>
+            </div>
+
+            <div id="adminMessagesCountLabel" class="text-[11px] font-mono text-neutral-500">Loading messages...</div>
+
+            <!-- Messages List Container -->
+            <div id="adminMessagesContainer" class="space-y-3 max-h-[680px] overflow-y-auto pr-1">
+              <div class="text-center py-10 text-neutral-500 font-mono text-xs">Loading Get in Touch sent messages from backend...</div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -779,9 +1095,7 @@
       <div class="flex flex-col sm:flex-row justify-between items-center text-xs text-neutral-400 border-b border-neutral-900 pb-10 gap-6">
         <div class="text-left">
           <span class="block text-neutral-500 font-mono">Direct Communication:</span>
-          <a href="https://mail.google.com/mail/?view=cm&fs=1&to=nitinb0407@gmail.com&su=Portfolio%20Inquiry%20-%20Nitin%20B" target="_blank" rel="noopener noreferrer" onclick="handleDirectEmail(event)" class="text-white font-mono font-medium hover:text-brand transition-colors" title="Redirect to Gmail">
-            nitinb0407@gmail.com
-          </a>
+          <a id="footerEmailLink" href="https://mail.google.com/mail/?view=cm&fs=1&to=nitinb0407@gmail.com&su=Portfolio%20Inquiry%20-%20Nitin%20B" target="_blank" rel="noopener noreferrer" onclick="handleDirectEmail(event)" class="text-white font-mono font-medium hover:text-brand transition-colors" title="Redirect to Gmail">nitinb0407@gmail.com</a>
         </div>
         <div>
           <h4 class="font-bold text-white text-sm">Let’s build something great</h4>
@@ -794,25 +1108,26 @@
 
       <!-- Social Links Row with Icons -->
       <div class="flex justify-center items-center flex-wrap gap-8 py-10 text-xs font-mono tracking-wider uppercase text-neutral-400">
-        <a href="https://www.linkedin.com/in/nitin-b-a023003ab?utm_source=share_via&utm_content=profile&utm_medium=member_android" target="_blank" rel="noopener noreferrer" class="hover:text-brand transition-colors flex items-center gap-2">
+        <a id="footerLinkedinLink" href="https://www.linkedin.com/in/nitin-b-a023003ab?utm_source=share_via&utm_content=profile&utm_medium=member_android" target="_blank" rel="noopener noreferrer" class="hover:text-brand transition-colors flex items-center gap-2">
           <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
             <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.46 10.9v8.37H9.2V10.9H6.46M7.83 6.45a1.64 1.64 0 1 0 0 3.28 1.64 1.64 0 0 0 0-3.28Z"/>
           </svg>
           LinkedIn
         </a>
-        <a href="https://github.com/nitinb0407" target="_blank" rel="noopener noreferrer" class="hover:text-brand transition-colors flex items-center gap-2">
+        <a id="footerGithubLink" href="https://github.com/nitinb0407" target="_blank" rel="noopener noreferrer" class="hover:text-brand transition-colors flex items-center gap-2">
           <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
             <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/>
           </svg>
           GitHub
         </a>
-        <a href="https://mail.google.com/mail/?view=cm&fs=1&to=nitinb0407@gmail.com&su=Portfolio%20Inquiry%20-%20Nitin%20B" target="_blank" rel="noopener noreferrer" onclick="handleDirectEmail(event)" class="hover:text-brand transition-colors flex items-center gap-2" title="Redirect to Gmail">
+        <a id="footerMailLink" href="https://mail.google.com/mail/?view=cm&fs=1&to=nitinb0407@gmail.com&su=Portfolio%20Inquiry%20-%20Nitin%20B" target="_blank" rel="noopener noreferrer" onclick="handleDirectEmail(event)" class="hover:text-brand transition-colors flex items-center gap-2" title="Redirect to Gmail">
           <svg class="w-4 h-4 fill-none stroke-current stroke-2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
             <rect width="20" height="16" x="2" y="4" rx="2"/>
             <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
           </svg>
           Email
         </a>
+        <a href="#admin" class="hover:text-brand transition-colors">Admin</a>
         <button onclick="scrollToTop()" class="hover:text-brand transition-colors">Back To Top &uarr;</button>
       </div>
 
@@ -925,9 +1240,24 @@
       }, 3500);
     }
 
+    function getActiveContactEmail() {
+      return (window.adminState && window.adminState.contactInfo && window.adminState.contactInfo.email) || 'nitinb0407@gmail.com';
+    }
+
+    function buildGmailComposeUrl(toEmail, subject = 'Portfolio Inquiry - Nitin B', body = '') {
+      const params = new URLSearchParams({
+        view: 'cm',
+        fs: '1',
+        to: toEmail,
+        su: subject
+      });
+      if (body) params.set('body', body);
+      return `https://mail.google.com/mail/?${params.toString()}`;
+    }
+
     // 5.1 Direct Email Handler (Redirects to Gmail Compose)
     function handleDirectEmail(e) {
-      const email = 'nitinb0407@gmail.com';
+      const email = getActiveContactEmail();
       if (navigator.clipboard && navigator.clipboard.writeText) {
         navigator.clipboard.writeText(email).catch(() => {});
       }
@@ -936,11 +1266,11 @@
 
     // 5. Copy Email Action
     function copyEmail() {
-      const email = 'nitinb0407@gmail.com';
+      const email = getActiveContactEmail();
       navigator.clipboard.writeText(email).then(() => {
-        showToast('Copied nitinb0407@gmail.com to clipboard! 📋');
+        showToast(`Copied ${email} to clipboard!`);
       }).catch(() => {
-        showToast('Email: nitinb0407@gmail.com');
+        showToast(`Email: ${email}`);
       });
     }
 
@@ -1577,7 +1907,11 @@ def find_primes(limit: int) -> list[int]:
     }
 
     function escapeHtml(str) {
-      return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+      return String(str ?? '')
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;');
     }
 
     // 13. Resume Modal Viewer
@@ -1689,6 +2023,9 @@ def find_primes(limit: int) -> list[int]:
 
           showToast(`✓ Message received from ${name}! Stored in database.`);
           document.getElementById('contactForm').reset();
+          if (typeof loadAdminDashboard === 'function' && window.adminState && !window.adminState.isLocked) {
+            loadAdminDashboard(false);
+          }
         } else {
           throw new Error(result.error || 'Server error occurred');
         }
@@ -1696,7 +2033,7 @@ def find_primes(limit: int) -> list[int]:
         console.error('Contact submission error:', err);
         feedback.classList.remove('hidden', 'text-brand');
         feedback.classList.add('text-rose-400');
-        feedback.innerHTML = `Could not reach backend: ${err.message}. <a href="https://mail.google.com/mail/?view=cm&fs=1&to=nitinb0407@gmail.com&su=${encodeURIComponent(subject)}&body=${encodeURIComponent(message)}" target="_blank" class="underline text-brand">Send directly via Gmail instead</a>`;
+        feedback.innerHTML = `Could not reach backend: ${err.message}. <a href="${buildGmailComposeUrl(getActiveContactEmail(), subject, message)}" target="_blank" rel="noopener noreferrer" class="underline text-brand">Send directly via Gmail instead</a>`;
         showToast('Submission error. Direct mail fallback available.');
       } finally {
         submitBtn.disabled = false;
@@ -1756,6 +2093,545 @@ def find_primes(limit: int) -> list[int]:
       }
       if (window.lucide && lucide.createIcons) lucide.createIcons();
     }
+
+    // 15. Admin Console State & Controllers (Demo-Credential Gated: Admin Details + Contact Info + Sent Messages)
+    window.adminState = {
+      isLocked: true,
+      messages: [],
+      filter: 'all',
+      demoCredentials: {
+        username: 'admin',
+        password: 'nitin2026'
+      },
+      adminDetails: {
+        username: 'admin',
+        role: 'Portfolio Owner & Administrator',
+        owner: 'Nitin B',
+        database: 'contact_messages.db',
+        authenticated_at: '--'
+      },
+      contactInfo: {
+        email: 'nitinb0407@gmail.com',
+        phone: '+91 93535 12112',
+        location: 'Bengaluru, Karnataka, India',
+        education: 'Jain University · CSE (AI & ML) · CGPA 7.5',
+        availability: 'Available for Opportunities',
+        linkedin_url: 'https://www.linkedin.com/in/nitin-b-a023003ab?utm_source=share_via&utm_content=profile&utm_medium=member_android',
+        github_url: 'https://github.com/nitinb0407',
+        updated_at: '--'
+      }
+    };
+
+    function applyAdminDetailsToDom(details) {
+      if (!details) return;
+      window.adminState.adminDetails = { ...window.adminState.adminDetails, ...details };
+      const d = window.adminState.adminDetails;
+      const bindings = {
+        adminDetailOwner: d.owner || 'Nitin B',
+        adminDetailUsername: d.username || 'admin',
+        adminDetailRole: d.role || 'Portfolio Owner & Administrator',
+        adminDetailDatabase: d.database || 'contact_messages.db',
+        adminDetailAuthTime: d.authenticated_at || new Date().toLocaleTimeString()
+      };
+      Object.entries(bindings).forEach(([id, val]) => {
+        const el = document.getElementById(id);
+        if (el) el.textContent = val;
+      });
+    }
+
+    function applyContactInfoToDom(info) {
+      if (!info) return;
+      window.adminState.contactInfo = { ...window.adminState.contactInfo, ...info };
+      const c = window.adminState.contactInfo;
+      const mailUrl = buildGmailComposeUrl(c.email, 'Portfolio Inquiry - Nitin B');
+      const telUrl = `tel:${String(c.phone || '').replace(/[^+\d]/g, '')}`;
+
+      // Sync public Get in Touch & Footer elements
+      const emailLink = document.getElementById('contactEmailLink');
+      if (emailLink) {
+        emailLink.href = mailUrl;
+        emailLink.textContent = c.email;
+        emailLink.title = `Click to redirect to Gmail (${c.email})`;
+      }
+      const contactMailIcon = document.getElementById('contactMailIconLink');
+      if (contactMailIcon) contactMailIcon.href = mailUrl;
+
+      const footerEmail = document.getElementById('footerEmailLink');
+      if (footerEmail) {
+        footerEmail.href = mailUrl;
+        footerEmail.textContent = c.email;
+      }
+      const footerMail = document.getElementById('footerMailLink');
+      if (footerMail) footerMail.href = mailUrl;
+
+      const phoneLink = document.getElementById('contactPhoneLink');
+      if (phoneLink) {
+        phoneLink.href = telUrl;
+        phoneLink.textContent = c.phone;
+      }
+      const locEl = document.getElementById('contactLocationText');
+      if (locEl) locEl.textContent = c.location;
+      const eduEl = document.getElementById('contactEducationText');
+      if (eduEl) eduEl.textContent = c.education;
+      const availEl = document.getElementById('contactAvailabilityText');
+      if (availEl) availEl.textContent = c.availability;
+
+      ['contactLinkedinLink', 'footerLinkedinLink', 'adminInfoLinkedin'].forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.href = c.linkedin_url;
+      });
+      ['contactGithubLink', 'footerGithubLink', 'adminInfoGithub'].forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.href = c.github_url;
+      });
+
+      // Sync Admin Get in Touch Info Card
+      const adminEmail = document.getElementById('adminInfoEmail');
+      if (adminEmail) {
+        adminEmail.href = mailUrl;
+        adminEmail.textContent = c.email;
+      }
+      const adminPhone = document.getElementById('adminInfoPhone');
+      if (adminPhone) {
+        adminPhone.href = telUrl;
+        adminPhone.textContent = c.phone;
+      }
+      const textBindings = {
+        adminInfoLocation: c.location,
+        adminInfoEducation: c.education,
+        adminInfoAvailability: c.availability,
+        adminInfoUpdatedAt: `Updated: ${c.updated_at || '--'}`,
+        adminStatUpdated: `Info updated: ${c.updated_at || '--'}`
+      };
+      Object.entries(textBindings).forEach(([id, val]) => {
+        const el = document.getElementById(id);
+        if (el) el.textContent = val;
+      });
+
+      // Populate Edit Form fields
+      const inputBindings = {
+        editContactEmail: c.email,
+        editContactPhone: c.phone,
+        editContactLocation: c.location,
+        editContactEducation: c.education,
+        editContactAvailability: c.availability,
+        editContactLinkedin: c.linkedin_url,
+        editContactGithub: c.github_url
+      };
+      Object.entries(inputBindings).forEach(([id, val]) => {
+        const input = document.getElementById(id);
+        if (input) input.value = val || '';
+      });
+    }
+
+    function toggleEditContactInfo(forceState) {
+      const viewCard = document.getElementById('adminContactViewCard');
+      const editForm = document.getElementById('adminContactEditForm');
+      const toggleBtn = document.getElementById('toggleEditContactBtn');
+      const saveMsg = document.getElementById('adminContactSaveMsg');
+      if (!viewCard || !editForm) return;
+
+      const showEdit = typeof forceState === 'boolean' ? forceState : editForm.classList.contains('hidden');
+      if (showEdit) {
+        applyContactInfoToDom(window.adminState.contactInfo);
+        viewCard.classList.add('hidden');
+        editForm.classList.remove('hidden');
+        if (saveMsg) saveMsg.classList.add('hidden');
+        if (toggleBtn) toggleBtn.innerHTML = `<i data-lucide="x" class="w-3.5 h-3.5"></i><span>Close</span>`;
+      } else {
+        editForm.classList.add('hidden');
+        viewCard.classList.remove('hidden');
+        if (toggleBtn) toggleBtn.innerHTML = `<i data-lucide="edit-3" class="w-3.5 h-3.5"></i><span>Edit Details</span>`;
+      }
+      if (window.lucide && lucide.createIcons) lucide.createIcons();
+    }
+
+    function fillDemoCredentials() {
+      const userEl = document.getElementById('adminUsernameInput');
+      const passEl = document.getElementById('adminPasswordInput');
+      const errEl = document.getElementById('adminLoginError');
+      if (userEl) userEl.value = window.adminState.demoCredentials.username;
+      if (passEl) passEl.value = window.adminState.demoCredentials.password;
+      if (errEl) errEl.classList.add('hidden');
+      showToast('Demo credentials filled. Click "Unlock Admin Block" to sign in.');
+    }
+
+    function setAdminLockUi(locked) {
+      window.adminState.isLocked = locked;
+      const lockedOverlay = document.getElementById('adminLockedOverlay');
+      const unlockedContent = document.getElementById('adminUnlockedContent');
+      const unlockedToolbar = document.getElementById('adminUnlockedToolbar');
+      const lockedBadge = document.getElementById('adminLockedStatusBadge');
+
+      if (locked) {
+        if (lockedOverlay) lockedOverlay.classList.remove('hidden');
+        if (unlockedContent) unlockedContent.classList.add('hidden');
+        if (unlockedToolbar) {
+          unlockedToolbar.classList.add('hidden');
+          unlockedToolbar.classList.remove('flex');
+        }
+        if (lockedBadge) lockedBadge.classList.remove('hidden');
+      } else {
+        if (lockedOverlay) lockedOverlay.classList.add('hidden');
+        if (unlockedContent) unlockedContent.classList.remove('hidden');
+        if (unlockedToolbar) {
+          unlockedToolbar.classList.remove('hidden');
+          unlockedToolbar.classList.add('flex');
+        }
+        if (lockedBadge) lockedBadge.classList.add('hidden');
+      }
+      if (window.lucide && lucide.createIcons) lucide.createIcons();
+    }
+
+    function lockAdminPanel() {
+      const userEl = document.getElementById('adminUsernameInput');
+      const passEl = document.getElementById('adminPasswordInput');
+      const errEl = document.getElementById('adminLoginError');
+      if (userEl) userEl.value = '';
+      if (passEl) passEl.value = '';
+      if (errEl) errEl.classList.add('hidden');
+      window.adminState.messages = [];
+      setAdminLockUi(true);
+      showToast('Admin section locked.');
+    }
+
+    async function unlockAdminPanel(e) {
+      if (e) e.preventDefault();
+      const userEl = document.getElementById('adminUsernameInput');
+      const passEl = document.getElementById('adminPasswordInput');
+      const errEl = document.getElementById('adminLoginError');
+      const loginBtn = document.getElementById('adminLoginBtn');
+
+      const username = (userEl?.value || '').trim();
+      const password = passEl?.value || '';
+
+      if (errEl) errEl.classList.add('hidden');
+      if (loginBtn) {
+        loginBtn.disabled = true;
+        loginBtn.innerHTML = `<span>Verifying...</span>`;
+      }
+
+      let authenticated = false;
+      let errMsg = 'Invalid demo credentials. Use admin / nitin2026.';
+      let authDetails = null;
+
+      try {
+        const res = await fetch('/api/admin/login', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ username, password })
+        });
+        const data = await res.json();
+        if (res.ok && data.success) {
+          authenticated = true;
+          authDetails = data.admin_details || null;
+        } else if (data && data.error) {
+          errMsg = data.error;
+        }
+      } catch (networkErr) {
+        const demo = window.adminState.demoCredentials;
+        authenticated = (username === demo.username && password === demo.password);
+        if (authenticated) {
+          authDetails = {
+            username: demo.username,
+            role: 'Portfolio Owner & Administrator',
+            owner: 'Nitin B',
+            database: 'contact_messages.db',
+            authenticated_at: new Date().toLocaleTimeString()
+          };
+        }
+      } finally {
+        if (loginBtn) {
+          loginBtn.disabled = false;
+          loginBtn.innerHTML = `<i data-lucide="unlock" class="w-4 h-4"></i><span>Unlock Admin Block</span>`;
+        }
+      }
+
+      if (!authenticated) {
+        if (errEl) {
+          errEl.textContent = errMsg;
+          errEl.classList.remove('hidden');
+        }
+        if (window.lucide && lucide.createIcons) lucide.createIcons();
+        return;
+      }
+
+      setAdminLockUi(false);
+      applyAdminDetailsToDom(authDetails || {
+        username,
+        authenticated_at: new Date().toLocaleTimeString()
+      });
+      await loadAdminDashboard(false);
+      showToast('Admin block unlocked!');
+    }
+
+    async function saveAdminContactInfo(e) {
+      e.preventDefault();
+      const saveBtn = document.getElementById('saveContactInfoBtn');
+      const msgEl = document.getElementById('adminContactSaveMsg');
+      const payload = {
+        email: document.getElementById('editContactEmail').value.trim(),
+        phone: document.getElementById('editContactPhone').value.trim(),
+        location: document.getElementById('editContactLocation').value.trim(),
+        education: document.getElementById('editContactEducation').value.trim(),
+        availability: document.getElementById('editContactAvailability').value.trim(),
+        linkedin_url: document.getElementById('editContactLinkedin').value.trim(),
+        github_url: document.getElementById('editContactGithub').value.trim()
+      };
+
+      if (saveBtn) {
+        saveBtn.disabled = true;
+        saveBtn.textContent = 'Saving...';
+      }
+      if (msgEl) msgEl.classList.add('hidden');
+
+      try {
+        const res = await fetch('/api/admin/contact-info', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+        const data = await res.json();
+        if (!res.ok || !data.success) {
+          throw new Error(data.error || 'Failed to update contact information');
+        }
+        applyContactInfoToDom(data.info);
+        toggleEditContactInfo(false);
+        showToast('Get in Touch info updated in SQLite & synced!');
+      } catch (err) {
+        if (msgEl) {
+          msgEl.textContent = err.message;
+          msgEl.className = 'text-[11px] text-center text-rose-400';
+          msgEl.classList.remove('hidden');
+        }
+        showToast(`Save error: ${err.message}`);
+      } finally {
+        if (saveBtn) {
+          saveBtn.disabled = false;
+          saveBtn.textContent = 'Save & Sync Page';
+        }
+      }
+    }
+
+    function setAdminMessageFilter(filterMode) {
+      window.adminState.filter = filterMode;
+      const styles = {
+        all: 'filterBtnAll',
+        unread: 'filterBtnUnread',
+        read: 'filterBtnRead'
+      };
+      Object.entries(styles).forEach(([mode, btnId]) => {
+        const btn = document.getElementById(btnId);
+        if (!btn) return;
+        if (mode === filterMode) {
+          btn.className = 'px-3 py-1.5 rounded-lg bg-brand text-black font-bold transition-colors';
+        } else {
+          btn.className = 'px-3 py-1.5 rounded-lg bg-dark border border-borderDark text-neutral-300 hover:border-brand transition-colors';
+        }
+      });
+      renderAdminMessages();
+    }
+
+    function renderAdminMessages() {
+      const container = document.getElementById('adminMessagesContainer');
+      const countLabel = document.getElementById('adminMessagesCountLabel');
+      if (!container) return;
+
+      const query = (document.getElementById('adminMessageSearch')?.value || '').trim().toLowerCase();
+      const filter = window.adminState.filter;
+      const allMsgs = window.adminState.messages || [];
+
+      const filtered = allMsgs.filter(m => {
+        if (filter === 'unread' && m.is_read) return false;
+        if (filter === 'read' && !m.is_read) return false;
+        if (!query) return true;
+        const haystack = `${m.name} ${m.email} ${m.subject} ${m.message}`.toLowerCase();
+        return haystack.includes(query);
+      });
+
+      if (countLabel) {
+        countLabel.textContent = `Showing ${filtered.length} of ${allMsgs.length} sent message(s) (Filter: ${filter.toUpperCase()})`;
+      }
+
+      if (filtered.length === 0) {
+        container.innerHTML = `<div class="text-center py-10 text-neutral-500 font-mono text-xs border border-dashed border-borderDark rounded-xl">No matching sent messages found.</div>`;
+        return;
+      }
+
+      container.innerHTML = filtered.map(m => {
+        const replySubject = `Re: ${m.subject || 'Portfolio Inquiry'}`;
+        const replyBody = `Hi ${m.name},\n\nThank you for reaching out via my portfolio!\n\nRegarding your message:\n"${m.message}"\n\nBest regards,\nNitin B`;
+        const replyUrl = buildGmailComposeUrl(m.email, replySubject, replyBody);
+        const badgeClass = m.is_read
+          ? 'bg-neutral-800 text-neutral-400 border-borderDark'
+          : 'bg-brand/15 text-brand border-brand/40 font-bold';
+        const badgeLabel = m.is_read ? 'READ' : 'UNREAD';
+
+        return `
+          <div class="p-4 rounded-xl bg-dark border ${m.is_read ? 'border-borderDark' : 'border-brand/40'} transition-all space-y-2.5">
+            <div class="flex flex-wrap items-center justify-between gap-2">
+              <div class="flex items-center gap-2 flex-wrap">
+                <span class="w-2 h-2 rounded-full ${m.is_read ? 'bg-neutral-600' : 'bg-brand animate-pulse'}"></span>
+                <span class="font-display font-bold text-sm text-white">${escapeHtml(m.name)}</span>
+                <span class="px-2 py-0.5 rounded text-[10px] font-mono border ${badgeClass}">${badgeLabel}</span>
+                <span class="text-[10px] font-mono text-neutral-500">#${m.id}</span>
+              </div>
+              <div class="text-[10px] font-mono text-neutral-500 flex items-center gap-2">
+                <span>IP: ${escapeHtml(m.ip_address || 'local')}</span>
+                <span>·</span>
+                <span class="bg-surface px-2 py-0.5 rounded border border-borderDark">${escapeHtml(m.created_at)}</span>
+              </div>
+            </div>
+
+            <div class="text-xs font-mono flex flex-wrap items-center gap-1.5">
+              <a href="${replyUrl}" target="_blank" rel="noopener noreferrer" class="text-brand hover:underline break-all" title="Reply via Gmail">${escapeHtml(m.email)}</a>
+              <span class="text-neutral-600">·</span>
+              <span class="text-neutral-300 font-semibold">${escapeHtml(m.subject)}</span>
+            </div>
+
+            <p class="text-xs text-neutral-300 bg-surface/80 p-3 rounded-lg border border-borderDark/70 whitespace-pre-wrap leading-relaxed">${escapeHtml(m.message)}</p>
+
+            <div class="flex flex-wrap items-center justify-end gap-2 pt-1 text-[11px] font-mono">
+              <button type="button" onclick="toggleMessageRead(${m.id}, ${!m.is_read})" class="px-2.5 py-1 rounded-lg bg-surface border border-borderDark hover:border-brand hover:text-brand text-neutral-300 transition-colors">
+                ${m.is_read ? 'Mark Unread' : 'Mark Read'}
+              </button>
+              <a href="${replyUrl}" target="_blank" rel="noopener noreferrer" class="px-2.5 py-1 rounded-lg bg-surface border border-borderDark hover:border-brand hover:text-brand text-neutral-300 transition-colors inline-flex items-center gap-1">
+                <i data-lucide="reply" class="w-3 h-3"></i>
+                <span>Reply via Mail</span>
+              </a>
+              <button type="button" onclick="deleteAdminMessage(${m.id})" class="px-2.5 py-1 rounded-lg bg-surface border border-borderDark hover:border-rose-500 hover:text-rose-400 text-neutral-400 transition-colors inline-flex items-center gap-1">
+                <i data-lucide="trash-2" class="w-3 h-3"></i>
+                <span>Delete</span>
+              </button>
+            </div>
+          </div>
+        `;
+      }).join('');
+
+      if (window.lucide && lucide.createIcons) lucide.createIcons();
+    }
+
+    async function toggleMessageRead(msgId, makeRead) {
+      try {
+        const res = await fetch('/api/admin/messages/read', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ id: msgId, is_read: makeRead })
+        });
+        const data = await res.json();
+        if (!res.ok || !data.success) throw new Error(data.error || 'Failed to update status');
+        await loadAdminDashboard(false);
+        showToast(`Message #${msgId} marked as ${makeRead ? 'read' : 'unread'}.`);
+      } catch (err) {
+        showToast(`Error: ${err.message}`);
+      }
+    }
+
+    async function markAllMessagesRead() {
+      try {
+        const res = await fetch('/api/admin/messages/mark-all-read', { method: 'POST' });
+        const data = await res.json();
+        if (!res.ok || !data.success) throw new Error(data.error || 'Failed to mark all read');
+        await loadAdminDashboard(false);
+        showToast(`Marked ${data.updated_count} message(s) as read.`);
+      } catch (err) {
+        showToast(`Error: ${err.message}`);
+      }
+    }
+
+    async function deleteAdminMessage(msgId) {
+      try {
+        const res = await fetch('/api/admin/messages/delete', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ id: msgId })
+        });
+        const data = await res.json();
+        if (!res.ok || !data.success) throw new Error(data.error || 'Failed to delete message');
+        await loadAdminDashboard(false);
+        showToast(`Deleted message #${msgId}.`);
+      } catch (err) {
+        showToast(`Error: ${err.message}`);
+      }
+    }
+
+    function exportAdminData() {
+      window.open('/api/admin/export', '_blank', 'noopener noreferrer');
+      showToast('Downloading Admin JSON backup...');
+    }
+
+    async function loadContactInfoPublic() {
+      try {
+        const res = await fetch('/api/contact/info');
+        const data = await res.json();
+        if (data && data.success && data.info) {
+          applyContactInfoToDom(data.info);
+        }
+      } catch (err) {
+        // Ignore offline public contact sync error
+      }
+    }
+
+    async function loadAdminDashboard(notify = false) {
+      if (window.adminState.isLocked) return;
+      const syncStatus = document.getElementById('adminSyncStatus');
+      const totalEl = document.getElementById('adminStatTotal');
+      const unreadEl = document.getElementById('adminStatUnread');
+      const readEl = document.getElementById('adminStatRead');
+      const statusEl = document.getElementById('adminStatStatus');
+
+      try {
+        const [infoRes, msgRes] = await Promise.all([
+          fetch('/api/contact/info'),
+          fetch('/api/contact/messages')
+        ]);
+        const infoData = await infoRes.json();
+        const msgData = await msgRes.json();
+
+        if (infoData && infoData.success && infoData.info) {
+          applyContactInfoToDom(infoData.info);
+        }
+
+        if (msgData && msgData.success) {
+          window.adminState.messages = msgData.messages || [];
+          const stats = msgData.stats || {
+            total_messages: window.adminState.messages.length,
+            unread_messages: window.adminState.messages.filter(m => !m.is_read).length,
+            read_messages: window.adminState.messages.filter(m => m.is_read).length
+          };
+          if (totalEl) totalEl.textContent = String(stats.total_messages);
+          if (unreadEl) unreadEl.textContent = String(stats.unread_messages);
+          if (readEl) readEl.textContent = String(stats.read_messages);
+          renderAdminMessages();
+        }
+
+        if (syncStatus) {
+          syncStatus.innerHTML = `<span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span><span>SQLite Live</span>`;
+          syncStatus.className = 'px-3 py-2 rounded-xl bg-surface border border-borderDark text-[11px] font-mono text-emerald-400 flex items-center gap-1.5';
+        }
+        if (statusEl) {
+          statusEl.innerHTML = `<span class="w-2.5 h-2.5 rounded-full bg-emerald-400"></span><span>Synced</span>`;
+        }
+        if (notify) showToast('Admin console synced with SQLite database.');
+      } catch (err) {
+        if (syncStatus) {
+          syncStatus.innerHTML = `<span class="w-2 h-2 rounded-full bg-amber-400"></span><span>Offline Preview</span>`;
+          syncStatus.className = 'px-3 py-2 rounded-xl bg-surface border border-borderDark text-[11px] font-mono text-amber-400 flex items-center gap-1.5';
+        }
+        if (statusEl) {
+          statusEl.innerHTML = `<span class="w-2.5 h-2.5 rounded-full bg-amber-400"></span><span>Offline</span>`;
+        }
+        const container = document.getElementById('adminMessagesContainer');
+        if (container) {
+          container.innerHTML = `<div class="text-center py-8 text-amber-400 font-mono text-xs border border-amber-400/20 rounded-xl bg-amber-400/5">Backend server offline. Start <code class="text-white">server.py</code> at http://localhost:8000 to view live sent messages.</div>`;
+        }
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      setAdminLockUi(true);
+      loadContactInfoPublic();
+    });
   </script>
 </body>
 </html>
